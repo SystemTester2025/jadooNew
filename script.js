@@ -26,11 +26,17 @@ $(document).ready(function() {
     e.preventDefault();
     
     const target = this.hash;
-    const $target = $(target);
     
-    $('html, body').animate({
-      'scrollTop': $target.offset().top - 80
-    }, 800, 'swing');
+    // Only attempt to scroll if the target exists
+    if(target && target !== '#') {
+      const $target = $(target);
+      
+      if($target.length) {
+        $('html, body').animate({
+          'scrollTop': $target.offset().top - 80
+        }, 800, 'swing');
+      }
+    }
   });
 
   // Add button click animation
