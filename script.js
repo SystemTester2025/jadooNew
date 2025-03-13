@@ -81,7 +81,7 @@ $(document).ready(function() {
     const servicesSection = $('.services-section');
 
     // About section parallax
-    if (aboutSection.length && $('.about-bg-text').length) {
+    if (aboutSection.length) {
       const aboutSectionTop = aboutSection.offset().top;
       const aboutSectionHeight = aboutSection.outerHeight();
 
@@ -93,7 +93,7 @@ $(document).ready(function() {
     }
     
     // Services section parallax and animations
-    if (servicesSection.length && $('.services-bg-text').length) {
+    if (servicesSection.length) {
       const servicesSectionTop = servicesSection.offset().top;
       const servicesSectionHeight = servicesSection.outerHeight();
 
@@ -101,6 +101,16 @@ $(document).ready(function() {
           scrollPosition < servicesSectionTop + servicesSectionHeight) {
         const parallaxValue = (scrollPosition - servicesSectionTop) * 0.2;
         $('.services-bg-text').css('transform', `translateY(${parallaxValue}px)`);
+      }
+      
+      // Animate service items when scrolled into view
+      if (scrollPosition > servicesSectionTop - window.innerHeight + 200) {
+        $('.service-item').each(function(index) {
+          const $this = $(this);
+          setTimeout(function() {
+            $this.addClass('visible');
+          }, 100 * index);
+        });
       }
     }
   });
@@ -114,87 +124,4 @@ $(document).ready(function() {
       $(this).find('.service-content').css('background-color', 'white');
     }
   );
-  
-  // Carousel functionality
-  let currentSlide = 0;
-  const totalSlides = $('.service-item').length;
-  
-  function updateCarousel() {
-    // Hide all slides
-    $('.service-item').removeClass('active');
-    // Show current slide
-    $(`.service-item:eq(${currentSlide})`).addClass('active');
-    
-    // Update indicators
-    $('.indicator').removeClass('active');
-    $(`.indicator[data-index="${currentSlide}"]`).addClass('active');
-    
-    // Update content display
-    const title = $(`.service-item:eq(${currentSlide})`).data('title');
-    const description = $(`.service-item:eq(${currentSlide})`).data('description');
-    
-    $('#service-title').text(title);
-    $('#service-description').text(description);
-  }
-  
-  $('.next').click(function() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateCarousel();
-  });
-  
-  $('.prev').click(function() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateCarousel();
-  });
-  
-  $('.indicator').click(function() {
-    currentSlide = parseInt($(this).data('index'));
-    updateCarousel();
-  });
-  
-  // Auto slide the carousel every 5 seconds
-  let carouselInterval = setInterval(function() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateCarousel();
-  }, 5000);
-  
-  // Pause auto sliding when hovering over the carousel
-  $('.services-carousel-container').hover(
-    function() {
-      clearInterval(carouselInterval);
-    },
-    function() {
-      carouselInterval = setInterval(function() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateCarousel();
-      }, 5000);
-    }
-  );
-  
-  // Touch swipe support for mobile devices
-  let touchStartX = 0;
-  let touchEndX = 0;
-  
-  $('.services-carousel').on('touchstart', function(e) {
-    touchStartX = e.originalEvent.touches[0].clientX;
-  });
-  
-  $('.services-carousel').on('touchend', function(e) {
-    touchEndX = e.originalEvent.changedTouches[0].clientX;
-    handleSwipe();
-  });
-  
-  function handleSwipe() {
-    if (touchStartX - touchEndX > 50) {
-      // Swipe left - next slide
-      currentSlide = (currentSlide + 1) % totalSlides;
-    } else if (touchEndX - touchStartX > 50) {
-      // Swipe right - previous slide
-      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    }
-    updateCarousel();
-  }
-  
-  // Initialize carousel
-  updateCarousel();
 });
