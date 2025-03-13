@@ -78,9 +78,7 @@ $(document).ready(function() {
   $(window).on('scroll', function() {
     const scrollPosition = $(window).scrollTop();
     const aboutSection = $('.about');
-    const servicesSection = $('.services-section');
 
-    // About section parallax
     if (aboutSection.length) {
       const aboutSectionTop = aboutSection.offset().top;
       const aboutSectionHeight = aboutSection.outerHeight();
@@ -91,37 +89,5 @@ $(document).ready(function() {
         $('.about-bg-text').css('transform', `translateX(${parallaxValue}px)`);
       }
     }
-    
-    // Services section parallax and animations
-    if (servicesSection.length) {
-      const servicesSectionTop = servicesSection.offset().top;
-      const servicesSectionHeight = servicesSection.outerHeight();
-
-      if (scrollPosition > servicesSectionTop - window.innerHeight && 
-          scrollPosition < servicesSectionTop + servicesSectionHeight) {
-        const parallaxValue = (scrollPosition - servicesSectionTop) * 0.2;
-        $('.services-bg-text').css('transform', `translateY(${parallaxValue}px)`);
-      }
-      
-      // Animate service items when scrolled into view
-      if (scrollPosition > servicesSectionTop - window.innerHeight + 200) {
-        $('.service-item').each(function(index) {
-          const $this = $(this);
-          setTimeout(function() {
-            $this.addClass('visible');
-          }, 100 * index);
-        });
-      }
-    }
   });
-  
-  // Add hover effect for service items
-  $('.service-item').hover(
-    function() {
-      $(this).find('.service-content').css('background-color', '#f9f9f9');
-    },
-    function() {
-      $(this).find('.service-content').css('background-color', 'white');
-    }
-  );
 });
