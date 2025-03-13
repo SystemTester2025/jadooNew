@@ -48,9 +48,32 @@ header .container {
 .logo {
   font-size: 24px;
   font-weight: 700;
-  border: 2px solid #333;
   padding: 8px 16px;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.logo::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  opacity: 0.6;
 }
 
 .nav-links {
@@ -127,6 +150,23 @@ header .container {
   display: flex;
   align-items: center;
   background: linear-gradient(to bottom, #fff 60%, #f5f5f5 40%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background-image: url('https://assets.materialup.com/uploads/36dd8594-be1a-4891-b8ed-d5ca73de721f/preview.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right center;
+  opacity: 0.1;
+  z-index: -1;
 }
 
 .hero .container {
@@ -273,6 +313,26 @@ h2 {
     display: flex;
   }
   
+
+.logo-icon {
+  font-size: 18px;
+  margin-right: 5px;
+  display: inline-block;
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Make sure logo text is centered vertically with icon */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
   .hamburger {
     display: flex;
   }
