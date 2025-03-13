@@ -1,4 +1,9 @@
 $(document).ready(function() {
+  // Check for responsive layouts on window resize
+  $(window).resize(function() {
+    // Trigger scroll events to update parallax elements
+    $(window).trigger('scroll');
+  });
   // Add animated class to nav links with delay
   setTimeout(function() {
     $('.nav-links li').each(function(index) {

@@ -9,6 +9,7 @@ html, body {
   height: 100%;
   width: 100%;
   font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
 }
 
 .container {
@@ -357,9 +358,19 @@ h2::after {
 }
 
 /* Responsive styles */
+@media (max-width: 1200px) {
+  .container {
+    width: 95%;
+  }
+  
+  h1 {
+    font-size: 3rem;
+  }
+}
+
 @media (max-width: 992px) {
   h1 {
-    font-size: 36px;
+    font-size: 2.5rem;
   }
 
   .hero .container {
@@ -372,6 +383,15 @@ h2::after {
 
   .hero-content {
     margin-bottom: 50px;
+  }
+  
+  .services-layout {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .services-image, .services-content {
+    width: 100%;
   }
 }
 
@@ -387,44 +407,109 @@ h2::after {
     padding: 20px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     text-align: center;
+    z-index: 100;
   }
 
   .nav-links.active {
     display: flex;
   }
+  
+  .nav-links li {
+    margin: 15px 0;
+  }
 
+  .logo-icon {
+    font-size: 18px;
+    margin-right: 5px;
+    display: inline-block;
+    animation: spin 8s linear infinite;
+  }
 
-.logo-icon {
-  font-size: 18px;
-  margin-right: 5px;
-  display: inline-block;
-  animation: spin 8s linear infinite;
-}
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
 
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* Make sure logo text is centered vertically with icon */
-.logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  /* Make sure logo text is centered vertically with icon */
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   .hamburger {
     display: flex;
   }
 
   h1 {
-    font-size: 30px;
+    font-size: 2rem;
   }
 
   .hero {
     padding-top: 100px;
     height: auto;
     min-height: 100vh;
+  }
+  
+  .services-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .services-number {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .about-title, .services-title {
+    font-size: 2.2rem;
+  }
+  
+  .services-content h3 {
+    font-size: 1.8rem;
+  }
+  
+  .about-main-desc {
+    font-size: 1rem;
+  }
+  
+  .services-image {
+    aspect-ratio: 16/9;
+  }
+  
+  .services-number {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  .about-title, .services-title {
+    font-size: 1.8rem;
+  }
+  
+  .services-content h3 {
+    font-size: 1.5rem;
+  }
+  
+  .hero-desc {
+    font-size: 0.9rem;
+  }
+  
+  .about-main-desc {
+    font-size: 0.9rem;
+  }
+  
+  .services-number {
+    font-size: 3.5rem;
   }
 }
 
@@ -574,6 +659,7 @@ h2::after {
   background: #f9f9f9;
   overflow: hidden;
   margin-top: 80px; /* Add spacing before Services section */
+  width: 100%;
 }
 
 .services-section::before {
@@ -607,6 +693,7 @@ h2::after {
   position: relative;
   z-index: 1;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -615,6 +702,7 @@ h2::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 
 .services-title {
@@ -643,6 +731,7 @@ h2::after {
   margin-top: 40px;
   position: relative;
   z-index: 2;
+  width: 100%;
 }
 
 .services-image {
