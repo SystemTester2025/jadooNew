@@ -124,4 +124,72 @@ $(document).ready(function() {
       $(this).find('.service-content').css('background-color', 'white');
     }
   );
+  
+  // Carousel functionality
+  let currentSlide = 0;
+  const totalSlides = $('.service-item').length;
+  
+  function updateCarousel() {
+    $('.services-carousel').css('transform', `translateX(-${currentSlide * 100}%)`);
+    $('.indicator').removeClass('active');
+    $(`.indicator[data-index="${currentSlide}"]`).addClass('active');
+  }
+  
+  $('.next').click(function() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateCarousel();
+  });
+  
+  $('.prev').click(function() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateCarousel();
+  });
+  
+  $('.indicator').click(function() {
+    currentSlide = parseInt($(this).data('index'));
+    updateCarousel();
+  });
+  
+  // Auto slide the carousel every 5 seconds
+  let carouselInterval = setInterval(function() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateCarousel();
+  }, 5000);
+  
+  // Pause auto sliding when hovering over the carousel
+  $('.services-carousel-container').hover(
+    function() {
+      clearInterval(carouselInterval);
+    },
+    function() {
+      carouselInterval = setInterval(function() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel();
+      }, 5000);
+    }
+  );
+  
+  // Touch swipe support for mobile devices
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  $('.services-carousel').on('touchstart', function(e) {
+    touchStartX = e.originalEvent.touches[0].clientX;
+  });
+  
+  $('.services-carousel').on('touchend', function(e) {
+    touchEndX = e.originalEvent.changedTouches[0].clientX;
+    handleSwipe();
+  });
+  
+  function handleSwipe() {
+    if (touchStartX - touchEndX > 50) {
+      // Swipe left - next slide
+      currentSlide = (currentSlide + 1) % totalSlides;
+    } else if (touchEndX - touchStartX > 50) {
+      // Swipe right - previous slide
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    }
+    updateCarousel();
+  }
 });
