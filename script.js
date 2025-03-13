@@ -1,44 +1,11 @@
 $(document).ready(function() {
-  // Add animated class to nav links with delay
-  setTimeout(function() {
-    $('.nav-links li').each(function(index) {
-      const $this = $(this);
-      setTimeout(function() {
-        $this.addClass('animated');
-      }, 100 * index);
-    });
-  }, 500);
   // Mobile menu toggle
-  $('.hamburger').click(function() {
+  $('.hamburger').on('click', function() {
     $('.nav-links').toggleClass('active');
     $(this).toggleClass('active');
   });
 
-  // Close mobile menu when clicking a link
-  $('.nav-links a').click(function() {
-    $('.nav-links').removeClass('active');
-    $('.hamburger').removeClass('active');
-  });
-
-  // Add smooth scrolling to nav links
-  $('a[href^="#"]').on('click', function(e) {
-    e.preventDefault();
-
-    const target = this.hash;
-
-    // Only attempt to scroll if the target exists
-    if(target && target !== '#') {
-      const $target = $(target);
-
-      if($target.length) {
-        $('html, body').animate({
-          'scrollTop': $target.offset().top - 80
-        }, 800, 'swing');
-      }
-    }
-  });
-
-  // Add button click animation
+  // Button ripple effect
   $('.cta-button').on('click', function(e) {
     const x = e.pageX - $(this).offset().left;
     const y = e.pageY - $(this).offset().top;
@@ -51,7 +18,7 @@ $(document).ready(function() {
 
     $(this).append(ripple);
 
-    setTimeout(() => {
+    setTimeout(function() {
       ripple.remove();
     }, 600);
   });
@@ -59,12 +26,14 @@ $(document).ready(function() {
   // Animate feature items on scroll
   $(window).on('scroll', function() {
     $('.feature-item').each(function() {
-      const featurePosition = $(this).offset().top;
-      const windowHeight = $(window).height();
-      const scrollPosition = $(window).scrollTop();
+      if ($(this).offset()) {
+        const featurePosition = $(this).offset().top;
+        const windowHeight = $(window).height();
+        const scrollPosition = $(window).scrollTop();
 
-      if (scrollPosition > featurePosition - windowHeight + 100) {
-        $(this).addClass('visible');
+        if (scrollPosition > featurePosition - windowHeight + 100) {
+          $(this).addClass('visible');
+        }
       }
     });
   });
@@ -79,15 +48,34 @@ $(document).ready(function() {
     const scrollPosition = $(window).scrollTop();
     const aboutSection = $('.about');
 
-    if (aboutSection.length) {
+    if (aboutSection.length && aboutSection.offset()) {
       const aboutSectionTop = aboutSection.offset().top;
       const aboutSectionHeight = aboutSection.outerHeight();
 
       if (scrollPosition > aboutSectionTop - window.innerHeight && 
           scrollPosition < aboutSectionTop + aboutSectionHeight) {
-        const parallaxValue = (scrollPosition - aboutSectionTop) * 0.3;
+        const parallaxValue = (scrollPosition - aboutSectionTop) * 0.3; // Added missing parallaxValue
         $('.about-bg-text').css('transform', `translateX(${parallaxValue}px)`);
       }
     }
   });
+
+  // Make sure all sections are responsive
+  function updateLayout() {
+    const windowWidth = $(window).width();
+
+    // Adjust font sizes based on viewport width
+    if (windowWidth < 768) {
+      $('h1').css('font-size', '7vw');
+    } else {
+      $('h1').css('font-size', '3.5vw');
+    }
+
+    // Make sure content fits within viewport
+    $('.container').css('max-width', windowWidth + 'px');
+  }
+
+  // Run on load and resize
+  $(window).on('resize', updateLayout);
+  updateLayout();
 });
