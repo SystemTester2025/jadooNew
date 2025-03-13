@@ -81,7 +81,7 @@ $(document).ready(function() {
     const servicesSection = $('.services-section');
 
     // About section parallax
-    if (aboutSection.length && $('.about-bg-text').length) {
+    if (aboutSection.length > 0 && $('.about-bg-text').length > 0) {
       const aboutSectionTop = aboutSection.offset().top;
       const aboutSectionHeight = aboutSection.outerHeight();
 
@@ -93,7 +93,7 @@ $(document).ready(function() {
     }
     
     // Services section parallax and animations
-    if (servicesSection.length && $('.services-bg-text').length) {
+    if (servicesSection.length > 0 && $('.services-bg-text').length > 0) {
       const servicesSectionTop = servicesSection.offset().top;
       const servicesSectionHeight = servicesSection.outerHeight();
 
