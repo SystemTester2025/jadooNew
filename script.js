@@ -40,23 +40,19 @@ $(document).ready(function() {
 
   // Add button click animation
   $('.cta-button').on('click', function(e) {
-    const $button = $(this);
+    const x = e.pageX - $(this).offset().left;
+    const y = e.pageY - $(this).offset().top;
 
-    // Create ripple effect
-    const $ripple = $('<span class="ripple"></span>');
-    $button.append($ripple);
-
-    const buttonPos = $button.offset();
-    const xPos = e.pageX - buttonPos.left;
-    const yPos = e.pageY - buttonPos.top;
-
-    $ripple.css({
-      top: yPos,
-      left: xPos
+    const ripple = $('<span class="ripple"></span>');
+    ripple.css({
+      top: y + 'px',
+      left: x + 'px'
     });
 
-    setTimeout(function() {
-      $ripple.remove();
+    $(this).append(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
     }, 600);
   });
 
@@ -77,4 +73,21 @@ $(document).ready(function() {
   setTimeout(function() {
     $(window).trigger('scroll');
   }, 500);
+
+  // Parallax effect for About section background text
+  $(window).on('scroll', function() {
+    const scrollPosition = $(window).scrollTop();
+    const aboutSection = $('.about');
+
+    if (aboutSection.length) {
+      const aboutSectionTop = aboutSection.offset().top;
+      const aboutSectionHeight = aboutSection.outerHeight();
+
+      if (scrollPosition > aboutSectionTop - window.innerHeight && 
+          scrollPosition < aboutSectionTop + aboutSectionHeight) {
+        const parallaxValue = (scrollPosition - aboutSectionTop) * 0.3;
+        $('.about-bg-text').css('transform', `translateX(${parallaxValue}px)`);
+      }
+    }
+  });
 });
