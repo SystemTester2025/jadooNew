@@ -81,7 +81,7 @@ $(document).ready(function() {
     const servicesSection = $('.services-section');
 
     // About section parallax
-    if (aboutSection.length) {
+    if (aboutSection.length && $('.about-bg-text').length) {
       const aboutSectionTop = aboutSection.offset().top;
       const aboutSectionHeight = aboutSection.outerHeight();
 
@@ -93,7 +93,7 @@ $(document).ready(function() {
     }
     
     // Services section parallax and animations
-    if (servicesSection.length) {
+    if (servicesSection.length && $('.services-bg-text').length) {
       const servicesSectionTop = servicesSection.offset().top;
       const servicesSectionHeight = servicesSection.outerHeight();
 
@@ -101,16 +101,6 @@ $(document).ready(function() {
           scrollPosition < servicesSectionTop + servicesSectionHeight) {
         const parallaxValue = (scrollPosition - servicesSectionTop) * 0.2;
         $('.services-bg-text').css('transform', `translateY(${parallaxValue}px)`);
-      }
-      
-      // Animate service items when scrolled into view
-      if (scrollPosition > servicesSectionTop - window.innerHeight + 200) {
-        $('.service-item').each(function(index) {
-          const $this = $(this);
-          setTimeout(function() {
-            $this.addClass('visible');
-          }, 100 * index);
-        });
       }
     }
   });
@@ -130,9 +120,21 @@ $(document).ready(function() {
   const totalSlides = $('.service-item').length;
   
   function updateCarousel() {
-    $('.services-carousel').css('transform', `translateX(-${currentSlide * 100}%)`);
+    // Hide all slides
+    $('.service-item').removeClass('active');
+    // Show current slide
+    $(`.service-item:eq(${currentSlide})`).addClass('active');
+    
+    // Update indicators
     $('.indicator').removeClass('active');
     $(`.indicator[data-index="${currentSlide}"]`).addClass('active');
+    
+    // Update content display
+    const title = $(`.service-item:eq(${currentSlide})`).data('title');
+    const description = $(`.service-item:eq(${currentSlide})`).data('description');
+    
+    $('#service-title').text(title);
+    $('#service-description').text(description);
   }
   
   $('.next').click(function() {
@@ -192,4 +194,7 @@ $(document).ready(function() {
     }
     updateCarousel();
   }
+  
+  // Initialize carousel
+  updateCarousel();
 });
