@@ -43,7 +43,7 @@ $(document).ready(function() {
     $(window).trigger('scroll');
   }, 500);
 
-  // Parallax effect for About section background text
+  // Parallax effect for About section background text and image
   $(window).on('scroll', function() {
     const scrollPosition = $(window).scrollTop();
     const aboutSection = $('.about');
@@ -54,8 +54,15 @@ $(document).ready(function() {
 
       if (scrollPosition > aboutSectionTop - window.innerHeight && 
           scrollPosition < aboutSectionTop + aboutSectionHeight) {
-        const parallaxValue = (scrollPosition - aboutSectionTop) * 0.3; // Added missing parallaxValue
+        const parallaxValue = (scrollPosition - aboutSectionTop) * 0.3;
         $('.about-bg-text').css('transform', `translateX(${parallaxValue}px)`);
+        
+        // Add movement to the JADOO image
+        const imageParallaxValue = (scrollPosition - aboutSectionTop) * 0.2;
+        $('.about-parallel-image').css({
+          'transform': `translate(${imageParallaxValue}px, ${-imageParallaxValue/2}px) rotate(${imageParallaxValue/10}deg)`,
+          'opacity': 0.2 + (imageParallaxValue * 0.001)
+        });
       }
     }
   });
