@@ -73,11 +73,36 @@ header .container {
   color: white !important;
   padding: 10px 24px;
   border-radius: 4px;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
 .cta-button:hover {
   background-color: #777;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.cta-button:active {
+  transform: translateY(-1px);
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.2);
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.cta-button:hover::before {
+  width: 100%;
 }
 
 .hamburger {
@@ -141,16 +166,74 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: color 0.3s;
+  transition: all 0.3s;
+  padding: 5px 10px;
+  border-radius: 4px;
+  position: relative;
 }
 
 .service-list a:hover {
   color: #555;
+  background-color: rgba(0,0,0,0.05);
+  padding-left: 15px;
 }
 
 .arrow {
   font-size: 1.5rem;
   font-weight: 300;
+  transition: all 0.3s;
+}
+
+.service-list a:hover .arrow {
+  transform: translateX(5px);
+  color: #777;
+}
+
+/* Button ripple effect */
+.cta-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+  width: 100px;
+  height: 100px;
+  margin-top: -50px;
+  margin-left: -50px;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Navigation link animations */
+.nav-links a:not(.cta-button) {
+  position: relative;
+}
+
+.nav-links a:not(.cta-button)::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #555;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:not(.cta-button):hover::after,
+.nav-links a:not(.cta-button).active::after {
+  width: 100%;
 }
 
 /* Responsive styles */

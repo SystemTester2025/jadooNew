@@ -1,5 +1,14 @@
 
 $(document).ready(function() {
+  // Add animated class to nav links with delay
+  setTimeout(function() {
+    $('.nav-links li').each(function(index) {
+      const $this = $(this);
+      setTimeout(function() {
+        $this.addClass('animated');
+      }, 100 * index);
+    });
+  }, 500);
   // Mobile menu toggle
   $('.hamburger').click(function() {
     $('.nav-links').toggleClass('active');
@@ -24,13 +33,25 @@ $(document).ready(function() {
     }, 800, 'swing');
   });
 
-  // Add animation to service items on hover
-  $('.service-list li').hover(
-    function() {
-      $(this).find('.arrow').css('transform', 'translateX(5px)');
-    },
-    function() {
-      $(this).find('.arrow').css('transform', 'translateX(0)');
-    }
-  );
+  // Add button click animation
+  $('.cta-button').on('click', function(e) {
+    const $button = $(this);
+    
+    // Create ripple effect
+    const $ripple = $('<span class="ripple"></span>');
+    $button.append($ripple);
+    
+    const buttonPos = $button.offset();
+    const xPos = e.pageX - buttonPos.left;
+    const yPos = e.pageY - buttonPos.top;
+    
+    $ripple.css({
+      top: yPos,
+      left: xPos
+    });
+    
+    setTimeout(function() {
+      $ripple.remove();
+    }, 600);
+  });
 });
