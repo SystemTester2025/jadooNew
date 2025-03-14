@@ -889,8 +889,8 @@ h2::after {
 }
 
 .scholarship-header {
-  margin-bottom: 60px;
   text-align: center;
+  margin-bottom: 40px;
 }
 
 .scholarship-title {
@@ -917,15 +917,13 @@ h2::after {
 
 .scholarship-content {
   display: flex;
-  align-items: center;
-  gap: 60px;
-  margin-top: 40px;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .scholarship-text {
   flex: 1;
-  position: relative;
-  z-index: 2;
+  padding-right: 20px; /* Add spacing between text and image */
 }
 
 .scholarship-main-desc {
