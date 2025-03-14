@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Scholarship Programs Management - JADOO</title>
+  <link href="../style.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="logo"><span class="logo-icon">✦</span> JADOO</div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html">HOME</a></li>
+          <li><a href="../index.html#about">ABOUT</a></li>
+          <li><a href="../index.html#services">SERVICES</a></li>
+          <li><a href="../index.html#scholarship" class="active">SCHOLARSHIP</a></li>
+          <li><a href="#" class="cta-button">Let's Talk</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="service-detail">
+    <div class="container">
+      <h1>Scholarship Programs Management</h1>
+      <div class="service-detail-content">
+        <div class="service-detail-image" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+        <div class="service-detail-text">
+          <p>With more than 20 years in managing scholarship programs with several Saudi governmental sponsors, JADOO has established itself as a leader in scholarship program management and execution.</p>
+          <p>We are experts of providing full and comprehensive plans and services to meet the sponsor's vision and targets, ensuring that educational investments yield maximum returns.</p>
+          
+          <h2>Our Comprehensive Scholarship Services Include:</h2>
+          <ul>
+            <li>Candidate Selection Criteria Development</li>
+            <li>Universities Selection Criteria</li>
+            <li>Program Bylaws and Regulations</li>
+            <li>Student Journey Planning</li>
+            <li>Counseling & Student Development Plans</li>
+            <li>Pre-Departure Preparatory Programs</li>
+            <li>University Enrollment Assistance</li>
+            <li>Educational Workshops and Sessions</li>
+            <li>Travel Logistics Coordination</li>
+            <li>Ongoing Overseas Support</li>
+          </ul>
+          
+          <h2>Why Choose JADOO for Scholarship Management?</h2>
+          <p>Our experienced team understands the complexities of international education and the specific needs of governmental sponsors. We provide end-to-end solutions that ensure students succeed academically while achieving the strategic objectives of sponsoring organizations.</p>
+          
+          <h2>Our Approach</h2>
+          <p>We take a holistic approach to scholarship management, considering all aspects of the student experience from selection to graduation and beyond. Our customized solutions are designed to maximize program effectiveness while providing exceptional support to both sponsors and students.</p>
+          
+          <a href="../index.html#scholarship" class="back-button">← Back to Scholarship</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    $(document).ready(function() {
+      // Add animation to elements
+      $('.service-detail-image').css('opacity', '0').animate({opacity: 1}, 1000);
+      
+      // Mobile menu toggle
+      $('.hamburger').click(function() {
+        $('.nav-links').toggleClass('active');
+        $(this).toggleClass('active');
+      });
+
+      // Close mobile menu when clicking a link
+      $('.nav-links a').click(function() {
+        $('.nav-links').removeClass('active');
+        $('.hamburger').removeClass('active');
+      });
+      
+      // Add button ripple effect
+      $('.cta-button').on('mousedown', function(e) {
+        const x = e.pageX - $(this).offset().left;
+        const y = e.pageY - $(this).offset().top;
+        
+        const ripple = $('<span class="ripple"></span>');
+        ripple.css({
+          top: y + 'px',
+          left: x + 'px'
+        });
+        
+        $(this).append(ripple);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+      
+      // Add scroll animations
+      $(window).scroll(function() {
+        const scrollPosition = $(window).scrollTop();
+        const windowHeight = $(window).height();
+        
+        $('.service-detail-text h2, .service-detail-text p').each(function() {
+          const elementPosition = $(this).offset().top;
+          
+          if (scrollPosition > elementPosition - windowHeight + 100) {
+            $(this).addClass('animated');
+          }
+        });
+      });
+      
+      // Trigger scroll event on page load
+      $(window).trigger('scroll');
+    });
+  </script>
+</body>
+</html>

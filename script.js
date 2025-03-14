@@ -84,6 +84,7 @@ $(document).ready(function() {
     const scrollPosition = $(window).scrollTop();
     const aboutSection = $('.about');
     const servicesSection = $('.services-section');
+    const scholarshipSection = $('.scholarship-section');
 
     // About section parallax
     if (aboutSection.length > 0 && $('.about-bg-text').length > 0 && aboutSection.offset()) {
@@ -106,6 +107,19 @@ $(document).ready(function() {
           scrollPosition < servicesSectionTop + servicesSectionHeight) {
         const parallaxValue = (scrollPosition - servicesSectionTop) * 0.2;
         $('.services-bg-text').css('transform', `translateY(${parallaxValue}px)`);
+      }
+    }
+    
+    // Scholarship section parallax and animations
+    if (scholarshipSection.length > 0 && $('.scholarship-bg-text').length > 0 && scholarshipSection.offset()) {
+      const scholarshipSectionTop = scholarshipSection.offset().top;
+      const scholarshipSectionHeight = scholarshipSection.outerHeight();
+
+      if (scrollPosition > scholarshipSectionTop - window.innerHeight && 
+          scrollPosition < scholarshipSectionTop + scholarshipSectionHeight) {
+        const parallaxValue = (scrollPosition - scholarshipSectionTop) * 0.2;
+        const rotateValue = -10 + (parallaxValue * 0.02);
+        $('.scholarship-bg-text').css('transform', `rotate(${rotateValue}deg) translateY(${parallaxValue}px)`);
       }
     }
   });
