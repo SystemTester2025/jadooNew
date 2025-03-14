@@ -51,6 +51,14 @@ $(document).ready(function() {
     }, 800, 'swing');
   });
 
+  // Add smooth scrolling to "HOME" link in navbar
+  $('.nav-links a[href="#"]').on('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({
+      scrollTop: 0
+    }, 800, 'swing');
+  });
+
   // Add button click animation
   $('.cta-button').on('click', function(e) {
     const x = e.pageX - $(this).offset().left;
