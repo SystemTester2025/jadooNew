@@ -8,115 +8,119 @@
   <link href="style.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <div class="logo"><span class="logo-icon">✦</span> JADOO</div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#" class="active">HOME</a></li>
-          <li><a href="#about">ABOUT</a></li>
-          <li><a href="#services">SERVICES</a></li>
-          <li><a href="#" class="cta-button">Let's Talk</a></li>
-        </ul>
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <h1>FROM EDUCATION <br>AND TRAINING <br>TO INNOVATION</h1>
-        <p class="hero-desc">JADOO brings innovative solutions to education and technology, transforming the way we learn and interact with the digital world.</p>
-        <a href="#" class="cta-button hero-cta">Discover More</a>
+  <div id="app">
+    <header>
+      <div class="container">
+        <div class="logo"><span class="logo-icon">✦</span> JADOO</div>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#" class="active" @click.prevent="navigateTo('#')">HOME</a></li>
+            <li><a href="#about" @click.prevent="navigateTo('#about')">ABOUT</a></li>
+            <li><a href="#services" @click.prevent="navigateTo('#services')">SERVICES</a></li>
+            <li><a href="#" class="cta-button">Let's Talk</a></li>
+          </ul>
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </nav>
       </div>
-      <div class="services">
-        <h2>SERVICES</h2>
-        <ul class="service-list">
-          <li>
-            <a href="services/education.html">
-              <span>Education and Training</span>
-              <span class="arrow">→</span>
-            </a>
-          </li>
-          <li>
-            <a href="services/ai.html">
-              <span>AI and Advanced Technologies</span>
-              <span class="arrow">→</span>
-            </a>
-          </li>
-          <li>
-            <a href="services/gaming.html">
-              <span>E-Gaming and eSport</span>
-              <span class="arrow">→</span>
-            </a>
-          </li>
-          <li>
-            <a href="services/arts.html">
-              <span>Arts and Entertainment</span>
-              <span class="arrow">→</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <section class="about" id="about">
-    <div class="container">
-      <div class="about-wrapper">
-        <div class="about-header">
-          <h2 class="about-title">ABOUT</h2>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>FROM EDUCATION <br>AND TRAINING <br>TO INNOVATION</h1>
+          <p class="hero-desc">JADOO brings innovative solutions to education and technology, transforming the way we learn and interact with the digital world.</p>
+          <a href="#" class="cta-button hero-cta">Discover More</a>
         </div>
-        <div class="about-content">
-          <p class="about-main-desc">
-            After more than 20 years of experience in the Saudi Arabia's Human Capital Development market, JAD Consulting (JADCO) was established to continue supporting the industry with a new inspired vision by the great Saudi Vision 2030.
-          </p>
-          <div class="about-columns">
-            <div class="about-column">
-              <p>JADCO and its highly ranked international partners of Companies, Universities and SMEs are forming together an exclusive and innovative consortium to serve and be part of the revolution and development and support the transformation for the next levels.</p>
-            </div>
-            <div class="about-column">
-              <p>JADCO in collaboration with the best partners in the globe, customize and Tailor projects to bridge the gap and providing the latest technologies to ensure the max level of quality of deliverables, support local content and transform knowledge to meet the objectives of our clients.</p>
+        <div class="services">
+          <h2>SERVICES</h2>
+          <ul class="service-list">
+            <li>
+              <a href="services/education.html" @click.prevent="navigateTo('services/education.html')">
+                <span>Education and Training</span>
+                <span class="arrow">→</span>
+              </a>
+            </li>
+            <li>
+              <a href="services/ai.html" @click.prevent="navigateTo('services/ai.html')">
+                <span>AI and Advanced Technologies</span>
+                <span class="arrow">→</span>
+              </a>
+            </li>
+            <li>
+              <a href="services/gaming.html" @click.prevent="navigateTo('services/gaming.html')">
+                <span>E-Gaming and eSport</span>
+                <span class="arrow">→</span>
+              </a>
+            </li>
+            <li>
+              <a href="services/arts.html" @click.prevent="navigateTo('services/arts.html')">
+                <span>Arts and Entertainment</span>
+                <span class="arrow">→</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about-wrapper">
+          <div class="about-header">
+            <h2 class="about-title">ABOUT</h2>
+          </div>
+          <div class="about-content">
+            <p class="about-main-desc">
+              After more than 20 years of experience in the Saudi Arabia's Human Capital Development market, JAD Consulting (JADCO) was established to continue supporting the industry with a new inspired vision by the great Saudi Vision 2030.
+            </p>
+            <div class="about-columns">
+              <div class="about-column">
+                <p>JADCO and its highly ranked international partners of Companies, Universities and SMEs are forming together an exclusive and innovative consortium to serve and be part of the revolution and development and support the transformation for the next levels.</p>
+              </div>
+              <div class="about-column">
+                <p>JADCO in collaboration with the best partners in the globe, customize and Tailor projects to bridge the gap and providing the latest technologies to ensure the max level of quality of deliverables, support local content and transform knowledge to meet the objectives of our clients.</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="about-bg-text">JADOO</div>
-  </section>
+      <div class="about-bg-text">JADOO</div>
+    </section>
 
-  <section class="services-section" id="services">
-    <div class="container">
-      <div class="services-wrapper">
-        <div class="services-header">
-          <h2 class="services-title">SERVICES</h2>
-          <div class="services-number">02</div>
-        </div>
-        
-        <div class="services-layout">
-          <div class="services-image">
-            <!-- This will be a placeholder image div, styled with CSS -->
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="services-wrapper">
+          <div class="services-header">
+            <h2 class="services-title">SERVICES</h2>
+            <div class="services-number">02</div>
           </div>
           
-          <div class="services-content">
-            <h3>AI and Advanced Technologies.</h3>
-            <p>AI represents a transformative technology with the potential to revolutionize organizations services and operations. By leveraging AI, organizations can enhance efficiency, improve decision-making and deliver superior to public.</p>
-            <a href="services/ai.html" class="learn-more">Learn More <span class="arrow-icon">→</span></a>
+          <div class="services-layout">
+            <div class="services-image">
+              <!-- This will be a placeholder image div, styled with CSS -->
+            </div>
+            
+            <div class="services-content">
+              <h3>AI and Advanced Technologies.</h3>
+              <p>AI represents a transformative technology with the potential to revolutionize organizations services and operations. By leveraging AI, organizations can enhance efficiency, improve decision-making and deliver superior to public.</p>
+              <a href="services/ai.html" @click.prevent="navigateTo('services/ai.html')" class="learn-more">Learn More <span class="arrow-icon">→</span></a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="services-bg-text">02</div>
-  </section>
+      <div class="services-bg-text">02</div>
+    </section>
+  </div>
 
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

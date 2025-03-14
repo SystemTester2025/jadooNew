@@ -97,20 +97,29 @@ header .container {
 }
 
 .cta-button {
-  background-color: #999;
+  background: linear-gradient(45deg, #6e8efb 0%, #a777e3 100%);
   color: white !important;
-  padding: 10px 24px;
-  border-radius: 4px;
-  transition: all 0.3s ease;
+  padding: 12px 30px;
+  border-radius: 6px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
   z-index: 1;
+  box-shadow: 0 6px 15px rgba(110, 142, 251, 0.3);
+  animation: pulseButton 2s infinite alternate;
+}
+
+@keyframes pulseButton {
+  0% { transform: scale(1); box-shadow: 0 6px 15px rgba(110, 142, 251, 0.3); }
+  100% { transform: scale(1.05); box-shadow: 0 8px 20px rgba(110, 142, 251, 0.5); }
 }
 
 .cta-button:hover {
-  background-color: #777;
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(110, 142, 251, 0.4);
+  animation-play-state: paused;
 }
 
 .cta-button:active {
@@ -121,16 +130,16 @@ header .container {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  width: 0%;
+  left: -100%;
+  width: 100%;
   height: 100%;
-  background-color: rgba(255,255,255,0.2);
-  transition: width 0.3s ease;
+  background: linear-gradient(45deg, #a777e3 0%, #6e8efb 100%);
+  transition: all 0.4s ease;
   z-index: -1;
 }
 
 .cta-button:hover::before {
-  width: 100%;
+  left: 0;
 }
 
 .hamburger {

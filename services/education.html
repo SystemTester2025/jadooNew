@@ -8,50 +8,76 @@
   <link href="../style.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
-  <header>
-    <div class="container">
-      <div class="logo"><span class="logo-icon">✦</span> JADOO</div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="../index.html">HOME</a></li>
-          <li><a href="../index.html#about">ABOUT</a></li>
-          <li><a href="../index.html#services" class="active">SERVICES</a></li>
-          <li><a href="#" class="cta-button">Let's Talk</a></li>
-        </ul>
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <section class="service-detail">
-    <div class="container">
-      <h1>Education and Training</h1>
-      <div class="service-detail-content">
-        <div class="service-detail-image"></div>
-        <div class="service-detail-text">
-          <p>JADOO provides comprehensive education and training solutions to help organizations build talent and capability. Our innovative approach to learning combines traditional methods with cutting-edge technology.</p>
-          <p>We offer customized training programs, workshops, and educational resources designed to meet the specific needs of our clients across various industries.</p>
-          <h2>Our Education Solutions Include:</h2>
-          <ul>
-            <li>Professional development courses</li>
-            <li>Corporate training programs</li>
-            <li>E-learning platforms</li>
-            <li>Educational content development</li>
-            <li>Learning management systems</li>
+  <div id="app">
+    <header>
+      <div class="container">
+        <div class="logo"><span class="logo-icon">✦</span> JADOO</div>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="../index.html" @click.prevent="navigateTo('../index.html')">HOME</a></li>
+            <li><a href="../index.html#about" @click.prevent="navigateTo('../index.html#about')">ABOUT</a></li>
+            <li><a href="../index.html#services" @click.prevent="navigateTo('../index.html#services')" class="active">SERVICES</a></li>
+            <li><a href="#" class="cta-button">Let's Talk</a></li>
           </ul>
-          <a href="../index.html#services" class="back-button">← Back to Services</a>
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section class="service-detail">
+      <div class="container">
+        <h1>Education and Training</h1>
+        <div class="service-detail-content">
+          <div class="service-detail-image">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Education and Training">
+          </div>
+          <div class="service-detail-text">
+            <p>Education and training are the foundation of personal and professional development. JADOO provides comprehensive educational services that empower individuals and organizations to reach their full potential through innovative learning solutions.</p>
+            <p>With over 20 years of experience in the Saudi Arabia's Human Capital Development market, we understand the unique challenges and opportunities in the education sector. Our customized programs are designed to bridge skill gaps and foster continuous learning in alignment with Saudi Vision 2030.</p>
+            <p>We collaborate with world-class universities, companies, and SMEs to deliver cutting-edge educational experiences that transform knowledge and drive success in the modern workplace.</p>
+          </div>
+        </div>
+        
+        <div class="service-detail-features">
+          <div class="feature-card">
+            <i class="fas fa-graduation-cap feature-icon"></i>
+            <h3>Professional Development Programs</h3>
+            <p>Enhance your team's skills with our tailored professional development programs. We offer comprehensive training in leadership, management, technical skills, and more to help your organization thrive.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-laptop-code feature-icon"></i>
+            <h3>Digital Literacy Training</h3>
+            <p>Navigate the digital landscape confidently with our digital literacy training. From basic computer skills to advanced digital tools, we empower learners to harness technology effectively.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-hands-helping feature-icon"></i>
+            <h3>Mentorship Programs</h3>
+            <p>Connect with industry experts through our mentorship programs. Gain valuable insights, guidance, and support to accelerate your personal and professional growth.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-chalkboard-teacher feature-icon"></i>
+            <h3>Customized Learning Solutions</h3>
+            <p>Address your specific educational needs with our customized learning solutions. We design and deliver targeted training that aligns with your goals and objectives.</p>
+          </div>
+        </div>
+        
+        <div class="cta-section">
+          <h2>Ready to Elevate Your Learning Experience?</h2>
+          <p>Discover how our education and training services can help you achieve your goals and drive success for your organization.</p>
+          <a href="#" class="cta-button">Contact Us Today</a>
         </div>
       </div>
-    </div>
-  </section>
-
+    </section>
+  </div>
+  
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="../script.js"></script>
 </body>
 </html>

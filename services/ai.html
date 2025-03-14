@@ -8,50 +8,76 @@
   <link href="../style.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
-  <header>
-    <div class="container">
-      <div class="logo"><span class="logo-icon">✦</span> JADOO</div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="../index.html">HOME</a></li>
-          <li><a href="../index.html#about">ABOUT</a></li>
-          <li><a href="../index.html#services" class="active">SERVICES</a></li>
-          <li><a href="#" class="cta-button">Let's Talk</a></li>
-        </ul>
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <section class="service-detail">
-    <div class="container">
-      <h1>AI and Advanced Technologies</h1>
-      <div class="service-detail-content">
-        <div class="service-detail-image"></div>
-        <div class="service-detail-text">
-          <p>AI represents a transformative technology with the potential to revolutionize organizations services and operations. By leveraging AI, organizations can enhance efficiency, improve decision-making and deliver superior to public.</p>
-          <p>At JADOO, we implement cutting-edge AI solutions that help businesses harness the power of artificial intelligence to solve complex problems and create new opportunities.</p>
-          <h2>Our AI Solutions Include:</h2>
-          <ul>
-            <li>Machine learning implementation</li>
-            <li>Natural language processing</li>
-            <li>Computer vision applications</li>
-            <li>Predictive analytics</li>
-            <li>AI-powered process automation</li>
+  <div id="app">
+    <header>
+      <div class="container">
+        <div class="logo"><span class="logo-icon">✦</span> JADOO</div>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="../index.html" @click.prevent="navigateTo('../index.html')">HOME</a></li>
+            <li><a href="../index.html#about" @click.prevent="navigateTo('../index.html#about')">ABOUT</a></li>
+            <li><a href="../index.html#services" @click.prevent="navigateTo('../index.html#services')" class="active">SERVICES</a></li>
+            <li><a href="#" class="cta-button">Let's Talk</a></li>
           </ul>
-          <a href="../index.html#services" class="back-button">← Back to Services</a>
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section class="service-detail">
+      <div class="container">
+        <h1>AI and Advanced Technologies</h1>
+        <div class="service-detail-content">
+          <div class="service-detail-image">
+            <img src="https://images.unsplash.com/photo-1677442135136-760c813a743d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI and Advanced Technologies">
+          </div>
+          <div class="service-detail-text">
+            <p>AI represents a transformative technology with the potential to revolutionize organizations services and operations. By leveraging AI, organizations can enhance efficiency, improve decision-making and deliver superior experiences to the public.</p>
+            <p>JADOO offers comprehensive AI services that help businesses implement cutting-edge technological solutions to stay ahead in the rapidly evolving digital landscape. Our team of experts works closely with organizations to understand their unique challenges and develop tailored AI strategies that drive results.</p>
+            <p>From machine learning algorithms and natural language processing to computer vision and predictive analytics, our AI capabilities cover a wide range of applications across various industries.</p>
+          </div>
+        </div>
+        
+        <div class="service-detail-features">
+          <div class="feature-card">
+            <i class="fas fa-robot feature-icon"></i>
+            <h3>Machine Learning Solutions</h3>
+            <p>Implement machine learning models to analyze data, identify patterns, and make predictions for your business needs. Our solutions can help automate processes, enhance customer experiences, and drive strategic decision-making.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-comments feature-icon"></i>
+            <h3>Natural Language Processing</h3>
+            <p>Leverage NLP capabilities to understand and extract meaning from human language. From chatbots and virtual assistants to sentiment analysis and text categorization, our NLP solutions can transform how you interact with data.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-brain feature-icon"></i>
+            <h3>Deep Learning Implementation</h3>
+            <p>Utilize neural networks and deep learning algorithms to solve complex problems. Our deep learning implementations can help with image recognition, speech recognition, recommendation systems, and more.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-chart-line feature-icon"></i>
+            <h3>Predictive Analytics</h3>
+            <p>Anticipate future trends and behaviors with predictive analytics. Our solutions can help you forecast market changes, customer behaviors, and potential risks, allowing you to make proactive decisions.</p>
+          </div>
+        </div>
+        
+        <div class="cta-section">
+          <h2>Ready to Transform Your Business with AI?</h2>
+          <p>Let our team of experts help you leverage the power of AI to drive innovation and growth for your organization.</p>
+          <a href="#" class="cta-button">Get Started Today</a>
         </div>
       </div>
-    </div>
-  </section>
-
+    </section>
+  </div>
+  
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="../script.js"></script>
 </body>
 </html>

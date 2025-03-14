@@ -1,18 +1,137 @@
+
+// Initialize Vue app
+const { createApp } = Vue;
+
+const app = createApp({
+  data() {
+    return {
+      currentPage: window.location.pathname,
+      currentHash: window.location.hash,
+      pageContent: '',
+      isLoading: false,
+      loadedPages: {}
+    };
+  },
+  methods: {
+    // Navigation without page refresh
+    async navigateTo(url) {
+      this.isLoading = true;
+      
+      // Check if it's a hash navigation on the same page
+      if (url.startsWith('#') && window.location.pathname === '/index.html') {
+        this.currentHash = url;
+        this.scrollToElement(url);
+        this.isLoading = false;
+        return;
+      }
+      
+      if (url === '#') {
+        url = 'index.html';
+      }
+
+      // Update URL in browser history without refreshing
+      window.history.pushState({ path: url }, '', url);
+      this.currentPage = url;
+      
+      // If it's a service page or other external page, load it dynamically
+      if (url.includes('.html') && !url.includes('#')) {
+        // Check if page content is already cached
+        if (this.loadedPages[url]) {
+          this.pageContent = this.loadedPages[url];
+          this.isLoading = false;
+          this.setupPageEffects();
+          return;
+        }
+        
+        try {
+          const response = await fetch(url);
+          const html = await response.text();
+          
+          // Extract only the content we need from the page
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const content = doc.querySelector('.service-detail') ? 
+            doc.querySelector('.service-detail').outerHTML : 
+            doc.body.innerHTML;
+          
+          this.pageContent = content;
+          this.loadedPages[url] = content; // Cache the page content
+          this.isLoading = false;
+          this.setupPageEffects();
+        } catch (error) {
+          console.error('Error loading page:', error);
+          this.isLoading = false;
+        }
+      } else {
+        this.isLoading = false;
+      }
+    },
+    
+    // Scroll to element with ID
+    scrollToElement(id) {
+      const element = document.querySelector(id);
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    },
+    
+    // Setup page effects and animations
+    setupPageEffects() {
+      // Ensure this runs after DOM updates
+      this.$nextTick(() => {
+        // Initialize any page-specific animations
+        this.initAnimations();
+        
+        // Trigger scroll effects
+        window.dispatchEvent(new Event('scroll'));
+      });
+    },
+    
+    // Initialize animations
+    initAnimations() {
+      // Add animated class to nav links with delay
+      $('.nav-links li').each(function(index) {
+        const $this = $(this);
+        setTimeout(function() {
+          $this.addClass('animated');
+        }, 100 * index);
+      });
+    }
+  },
+  
+  // Vue lifecycle hook - when app is mounted
+  mounted() {
+    // Handle browser back/forward navigation
+    window.addEventListener('popstate', (event) => {
+      this.currentPage = window.location.pathname;
+      this.currentHash = window.location.hash;
+      
+      if (this.currentHash) {
+        this.scrollToElement(this.currentHash);
+      }
+    });
+    
+    // Initialize page effects
+    this.setupPageEffects();
+  }
+});
+
+// Mount Vue app
+window.onload = function() {
+  app.mount('#app');
+};
+
+// jQuery initialization when document is ready
 $(document).ready(function() {
   // Check for responsive layouts on window resize
   $(window).resize(function() {
     // Trigger scroll events to update parallax elements
     $(window).trigger('scroll');
   });
-  // Add animated class to nav links with delay
-  setTimeout(function() {
-    $('.nav-links li').each(function(index) {
-      const $this = $(this);
-      setTimeout(function() {
-        $this.addClass('animated');
-      }, 100 * index);
-    });
-  }, 500);
+
   // Mobile menu toggle
   $('.hamburger').click(function() {
     $('.nav-links').toggleClass('active');
@@ -25,26 +144,8 @@ $(document).ready(function() {
     $('.hamburger').removeClass('active');
   });
 
-  // Add smooth scrolling to nav links
-  $('a[href^="#"]').on('click', function(e) {
-    e.preventDefault();
-
-    const target = this.hash;
-
-    // Only attempt to scroll if the target exists
-    if(target && target !== '#') {
-      const $target = $(target);
-
-      if($target.length) {
-        $('html, body').animate({
-          'scrollTop': $target.offset().top - 80
-        }, 800, 'swing');
-      }
-    }
-  });
-
   // Add button click animation
-  $('.cta-button').on('click', function(e) {
+  $('body').on('click', '.cta-button', function(e) {
     const x = e.pageX - $(this).offset().left;
     const y = e.pageY - $(this).offset().top;
 
@@ -63,12 +164,12 @@ $(document).ready(function() {
 
   // Animate feature items on scroll
   $(window).on('scroll', function() {
-    $('.feature-item').each(function() {
-      const featurePosition = $(this).offset().top;
+    $('.feature-card, .about-content, .services-content').each(function() {
+      const elementPosition = $(this).offset() ? $(this).offset().top : 0;
       const windowHeight = $(window).height();
       const scrollPosition = $(window).scrollTop();
 
-      if (scrollPosition > featurePosition - windowHeight + 100) {
+      if (scrollPosition > elementPosition - windowHeight + 100) {
         $(this).addClass('visible');
       }
     });
@@ -111,22 +212,16 @@ $(document).ready(function() {
   });
   
   // Add hover effect for service items
-  $('.service-item').hover(
-    function() {
-      $(this).find('.service-content').css('background-color', '#f9f9f9');
-    },
-    function() {
-      $(this).find('.service-content').css('background-color', 'white');
-    }
-  );
+  $('body').on('mouseenter', '.service-item', function() {
+    $(this).find('.service-content').css('background-color', '#f9f9f9');
+  }).on('mouseleave', '.service-item', function() {
+    $(this).find('.service-content').css('background-color', 'white');
+  });
   
   // Add hover animation for the learn more button in services
-  $('.learn-more').hover(
-    function() {
-      $(this).find('.arrow-icon').css('transform', 'translateX(5px)');
-    },
-    function() {
-      $(this).find('.arrow-icon').css('transform', 'translateX(0)');
-    }
-  );
+  $('body').on('mouseenter', '.learn-more', function() {
+    $(this).find('.arrow-icon').css('transform', 'translateX(5px)');
+  }).on('mouseleave', '.learn-more', function() {
+    $(this).find('.arrow-icon').css('transform', 'translateX(0)');
+  });
 });

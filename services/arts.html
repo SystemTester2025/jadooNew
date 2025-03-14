@@ -8,50 +8,76 @@
   <link href="../style.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
-  <header>
-    <div class="container">
-      <div class="logo"><span class="logo-icon">✦</span> JADOO</div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="../index.html">HOME</a></li>
-          <li><a href="../index.html#about">ABOUT</a></li>
-          <li><a href="../index.html#services" class="active">SERVICES</a></li>
-          <li><a href="#" class="cta-button">Let's Talk</a></li>
-        </ul>
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <section class="service-detail">
-    <div class="container">
-      <h1>Arts and Entertainment</h1>
-      <div class="service-detail-content">
-        <div class="service-detail-image"></div>
-        <div class="service-detail-text">
-          <p>JADOO helps organizations leverage the power of arts and entertainment to engage audiences, build brands, and create memorable experiences.</p>
-          <p>Our innovative approach combines creative expertise with strategic thinking to deliver arts and entertainment solutions that drive results.</p>
-          <h2>Our Arts and Entertainment Solutions Include:</h2>
-          <ul>
-            <li>Cultural event production</li>
-            <li>Digital art installations</li>
-            <li>Entertainment content creation</li>
-            <li>Arts education programs</li>
-            <li>Media production services</li>
+  <div id="app">
+    <header>
+      <div class="container">
+        <div class="logo"><span class="logo-icon">✦</span> JADOO</div>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="../index.html" @click.prevent="navigateTo('../index.html')">HOME</a></li>
+            <li><a href="../index.html#about" @click.prevent="navigateTo('../index.html#about')">ABOUT</a></li>
+            <li><a href="../index.html#services" @click.prevent="navigateTo('../index.html#services')" class="active">SERVICES</a></li>
+            <li><a href="#" class="cta-button">Let's Talk</a></li>
           </ul>
-          <a href="../index.html#services" class="back-button">← Back to Services</a>
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section class="service-detail">
+      <div class="container">
+        <h1>Arts and Entertainment</h1>
+        <div class="service-detail-content">
+          <div class="service-detail-image">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Arts and Entertainment">
+          </div>
+          <div class="service-detail-text">
+            <p>Arts and Entertainment represent the cultural heartbeat of society. JADOO offers comprehensive services to help organizations, artists, and venues thrive in this dynamic and creative industry, connecting audiences with meaningful experiences.</p>
+            <p>Our team of creative professionals and industry experts provides strategic guidance, technical support, and innovative solutions to help you succeed in the ever-evolving landscape of arts and entertainment.</p>
+            <p>From event production and artist management to cultural programming and digital engagement, our services encompass all aspects of the arts ecosystem, empowering you to create impactful and memorable artistic experiences.</p>
+          </div>
+        </div>
+        
+        <div class="service-detail-features">
+          <div class="feature-card">
+            <i class="fas fa-film feature-icon"></i>
+            <h3>Event Production</h3>
+            <p>Create unforgettable events with our comprehensive production services. From concept development and venue selection to technical production and audience engagement, we help you deliver exceptional experiences.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-paint-brush feature-icon"></i>
+            <h3>Creative Content Development</h3>
+            <p>Develop compelling creative content that resonates with your audience. Our team works with you to craft stories, visuals, and experiences that capture attention and inspire engagement across various mediums.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-theater-masks feature-icon"></i>
+            <h3>Cultural Programming</h3>
+            <p>Design and implement cultural programs that reflect your mission and connect with diverse audiences. We provide curatorial expertise, program development, and implementation support for organizations of all sizes.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-digital-tachograph feature-icon"></i>
+            <h3>Digital Arts Engagement</h3>
+            <p>Expand your reach through digital platforms and technologies. We help you leverage virtual reality, augmented reality, livestreaming, and other digital tools to create innovative arts experiences for audiences worldwide.</p>
+          </div>
+        </div>
+        
+        <div class="cta-section">
+          <h2>Ready to Elevate Your Arts Experience?</h2>
+          <p>Let our team of creative professionals help you achieve your artistic vision and connect with audiences in meaningful ways.</p>
+          <a href="#" class="cta-button">Start Creating Today</a>
         </div>
       </div>
-    </div>
-  </section>
-
+    </section>
+  </div>
+  
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="../script.js"></script>
 </body>
 </html>

@@ -8,50 +8,76 @@
   <link href="../style.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
-  <header>
-    <div class="container">
-      <div class="logo"><span class="logo-icon">✦</span> JADOO</div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="../index.html">HOME</a></li>
-          <li><a href="../index.html#about">ABOUT</a></li>
-          <li><a href="../index.html#services" class="active">SERVICES</a></li>
-          <li><a href="#" class="cta-button">Let's Talk</a></li>
-        </ul>
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <section class="service-detail">
-    <div class="container">
-      <h1>E-Gaming and eSport</h1>
-      <div class="service-detail-content">
-        <div class="service-detail-image"></div>
-        <div class="service-detail-text">
-          <p>JADOO is at the forefront of the rapidly growing e-gaming and eSports industry. We provide comprehensive solutions for organizations looking to enter or expand in this exciting field.</p>
-          <p>Our team of experts helps clients develop, implement, and manage e-gaming initiatives that engage audiences and create new revenue streams.</p>
-          <h2>Our E-Gaming Solutions Include:</h2>
-          <ul>
-            <li>eSports event organization</li>
-            <li>Gaming platform development</li>
-            <li>Team management and coaching</li>
-            <li>Gaming community building</li>
-            <li>Gaming technology implementation</li>
+  <div id="app">
+    <header>
+      <div class="container">
+        <div class="logo"><span class="logo-icon">✦</span> JADOO</div>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="../index.html" @click.prevent="navigateTo('../index.html')">HOME</a></li>
+            <li><a href="../index.html#about" @click.prevent="navigateTo('../index.html#about')">ABOUT</a></li>
+            <li><a href="../index.html#services" @click.prevent="navigateTo('../index.html#services')" class="active">SERVICES</a></li>
+            <li><a href="#" class="cta-button">Let's Talk</a></li>
           </ul>
-          <a href="../index.html#services" class="back-button">← Back to Services</a>
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section class="service-detail">
+      <div class="container">
+        <h1>E-Gaming and eSport</h1>
+        <div class="service-detail-content">
+          <div class="service-detail-image">
+            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="E-Gaming and eSport">
+          </div>
+          <div class="service-detail-text">
+            <p>E-Gaming and eSports represent one of the fastest-growing entertainment sectors globally. JADOO provides comprehensive services to help organizations, teams, and individuals navigate this dynamic industry and capitalize on its tremendous opportunities.</p>
+            <p>Our team of gaming experts and industry veterans offers strategic guidance, technical support, and innovative solutions to help you succeed in the competitive world of electronic sports and gaming.</p>
+            <p>From tournament organization and team management to gaming infrastructure and audience engagement, our services cover all aspects of the eSports ecosystem, empowering you to achieve your goals in this exciting field.</p>
+          </div>
+        </div>
+        
+        <div class="service-detail-features">
+          <div class="feature-card">
+            <i class="fas fa-trophy feature-icon"></i>
+            <h3>Tournament Organization</h3>
+            <p>Plan and execute successful eSports tournaments with our comprehensive event management services. From venue selection and technical setup to player coordination and broadcast production, we handle all aspects of tournament organization.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-users feature-icon"></i>
+            <h3>Team Development & Management</h3>
+            <p>Build and manage high-performing eSports teams with our specialized services. We provide coaching, training, recruitment, and management support to help your team reach its full potential and compete at the highest levels.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-gamepad feature-icon"></i>
+            <h3>Gaming Infrastructure</h3>
+            <p>Develop state-of-the-art gaming facilities and infrastructure with our technical expertise. We design and implement gaming centers, training facilities, and broadcast studios that meet the demands of modern eSports.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-chart-bar feature-icon"></i>
+            <h3>Market Analysis & Strategy</h3>
+            <p>Navigate the complex eSports market with our in-depth analysis and strategic guidance. We provide market research, trend analysis, and strategic planning to help you make informed decisions and achieve your business objectives.</p>
+          </div>
+        </div>
+        
+        <div class="cta-section">
+          <h2>Ready to Level Up Your eSports Presence?</h2>
+          <p>Let our team of gaming experts help you achieve success in the exciting world of eSports and electronic gaming.</p>
+          <a href="#" class="cta-button">Start Your Journey</a>
         </div>
       </div>
-    </div>
-  </section>
-
+    </section>
+  </div>
+  
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="../script.js"></script>
 </body>
 </html>
