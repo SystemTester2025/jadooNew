@@ -980,13 +980,13 @@ h2::after {
 .scholarship-list {
   list-style: none;
   padding: 0;
-  margin: 30px 0;
+  margin: 10px 0;
 }
 
 .scholarship-list li {
   position: relative;
   padding-left: 30px;
-  margin-bottom: 15px;
+  margin-bottom: 0px; /* Reduced margin */
   font-size: 1rem;
   line-height: 1.5;
   color: #555;
