@@ -844,14 +844,34 @@ h2::after {
   transition: all 0.3s ease;
   border: 1px solid #ddd;
   padding: 10px 25px;
+  width: fit-content;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.arrow-icon {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.learn-more:hover {
+  color: #111;
+  border-color: #aaa;
+}
+
+.learn-more:hover .arrow-icon {
+  transform: translateX(5px);
+}
 
 /* Scholarship Section */
 .scholarship-section {
   padding: 100px 0;
   position: relative;
-  background: #f5f7fa;
+  background: rgba(255, 255, 255, 0.85); /* Transparent background */
   overflow: hidden;
   width: 100%;
+  backdrop-filter: blur(10px); /* Add blur effect */
 }
 
 .scholarship-section::before {
@@ -898,9 +918,14 @@ h2::after {
   font-weight: 800;
   color: #111;
   position: relative;
-  margin: 0 auto 20px;
+  margin: 40px auto 20px; /* Add space from the top */
   display: inline-block;
   text-transform: uppercase;
+  /* Remove gradient and make it solid color */
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  animation: none;
 }
 
 .scholarship-title::after {
@@ -1167,24 +1192,32 @@ h2::after {
   }
 }
 
-  width: fit-content;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
+@media (max-width: 768px) {
+  .services-section {
+    padding: 70px 0;
+  }
+
+  .services-title {
+    font-size: 2rem;
+  }
+
+  .services-number {
+    font-size: 5rem;
+  }
+
+  .services-content-display h3 {
+    font-size: 1.8rem;
+  }
 }
 
-.arrow-icon {
-  margin-left: 8px;
-  transition: transform 0.3s ease;
-}
+@media (max-width: 480px) {
+  .services-number {
+    font-size: 4rem;
+  }
 
-.learn-more:hover {
-  color: #111;
-  border-color: #aaa;
-}
-
-.learn-more:hover .arrow-icon {
-  transform: translateX(5px);
+  .service-content h3 {
+    font-size: 1.3rem;
+  }
 }
 
 @media (max-width: 992px) {
@@ -1213,33 +1246,5 @@ h2::after {
   .services-carousel {
     aspect-ratio: 16/9;
     margin-bottom: 30px;
-  }
-}
-
-@media (max-width: 768px) {
-  .services-section {
-    padding: 70px 0;
-  }
-
-  .services-title {
-    font-size: 2rem;
-  }
-
-  .services-number {
-    font-size: 5rem;
-  }
-
-  .services-content-display h3 {
-    font-size: 1.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .services-number {
-    font-size: 4rem;
-  }
-
-  .service-content h3 {
-    font-size: 1.3rem;
   }
 }
