@@ -1284,3 +1284,77 @@ h2::after {
     margin-bottom: 30px;
   }
 }
+
+/* Contact Section */
+.contact-section {
+  padding: 100px 0;
+  background: #f9f9f9;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.contact-info {
+  flex: 1;
+}
+
+.contact-info h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.contact-info p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.contact-info .contact-details {
+  margin-bottom: 20px;
+}
+
+.contact-info .contact-details p {
+  margin: 5px 0;
+}
+
+.contact-info .contact-details p span {
+  font-weight: 700;
+}
+
+.contact-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.contact-form button {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #6b5ce7, #0099ff);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: linear-gradient(135deg, #0099ff, #6b5ce7);
+}
