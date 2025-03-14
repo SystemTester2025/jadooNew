@@ -1289,6 +1289,10 @@ h2::after {
 .contact-section {
   padding: 100px 0;
   background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .contact-container {
@@ -1296,16 +1300,35 @@ h2::after {
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  align-items: center;
+  align-items: flex-start;
+  gap: 50px;
 }
 
 .contact-info {
   flex: 1;
+  display: flex;
+  align-items: center;
 }
 
-.contact-info h2 {
+.contact-info .logo {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-right: 20px;
+}
+
+.contact-info .text-content {
+  text-align: left;
+}
+
+.contact-info .text-content h2 {
   font-size: 2.5rem;
   font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.contact-info .text-content h3 {
+  font-size: 2rem;
+  font-weight: 600;
   margin-bottom: 20px;
 }
 
@@ -1332,20 +1355,20 @@ h2::after {
   flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
 }
 
 .contact-form button {
-  padding: 10px 20px;
+  padding: 15px 20px;
   background: linear-gradient(135deg, #6b5ce7, #0099ff);
   color: white;
   border: none;
@@ -1357,4 +1380,38 @@ h2::after {
 
 .contact-form button:hover {
   background: linear-gradient(135deg, #0099ff, #6b5ce7);
+}
+
+.contact-details {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.contact-details p {
+  margin: 10px 0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-info, .contact-form {
+    width: 100%;
+  }
+
+  .contact-info {
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .contact-info .logo {
+    margin-bottom: 20px;
+  }
+
+  .contact-info .text-content {
+    text-align: center;
+  }
 }
