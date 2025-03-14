@@ -159,4 +159,16 @@ $(document).ready(function() {
       $(this).find('.arrow-icon').css('transform', 'translateX(0)');
     }
   );
+
+  // Add animation for contact section logo when hovering over the entire contact section
+  $('.contact-section').hover(
+    function() {
+      // When mouse enters the contact section
+      $('.contact-info .logo').addClass('animated');
+    },
+    function() {
+      // When mouse leaves the contact section
+      $('.contact-info .logo').removeClass('animated');
+    }
+  );
 });
