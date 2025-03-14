@@ -69,6 +69,60 @@ header .container {
   overflow: hidden;
 }
 
+.logo::before, .logo::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: black;
+  transition: all 0.5s ease;
+}
+
+.logo::before {
+  top: 0;
+  left: 0;
+}
+
+.logo::after {
+  bottom: 0;
+  right: 0;
+}
+
+header:hover .logo::before, header:hover .logo::after {
+  width: 25%;
+}
+
+header:hover .logo::before {
+  animation: moveBorder 2s linear infinite;
+}
+
+header:hover .logo::after {
+  animation: moveBorder 2s linear infinite reverse;
+}
+
+@keyframes moveBorder {
+  0% {
+    width: 0;
+    left: 0;
+  }
+  25% {
+    width: 25%;
+    left: 0;
+  }
+  50% {
+    width: 25%;
+    left: 75%;
+  }
+  75% {
+    width: 0;
+    left: 100%;
+  }
+  100% {
+    width: 0;
+    left: 0;
+  }
+}
+
 .logo:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
