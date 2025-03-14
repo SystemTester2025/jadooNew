@@ -16,13 +16,18 @@ html, body {
 }
 
 .container {
-  width: 100%; /* Change to full width */
-  max-width: 1200px; /* Optional: Ensure content doesn't stretch too wide */
+  width: 100%; /* Ensure full width */
+  max-width: 1200px; /* Set max width */
   margin: 0 auto;
   padding: 0 15px; /* Add padding for smaller screens */
   box-sizing: border-box; /* Include padding in width calculation */
 }
 
+section {
+  width: 100%; /* Ensure sections take full width */
+  padding: 0 15px; /* Add padding for smaller screens */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
 
 a {
   text-decoration: none;
