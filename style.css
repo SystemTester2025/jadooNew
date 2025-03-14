@@ -1056,25 +1056,21 @@ h2::after {
 
 .statistics-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between; /* Change to space-between */
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0; /* Add padding for alignment */
 }
 
 .stat-item {
   flex: 1;
-  padding: 20px;
+  padding: 20px 20px 20px 20px; /* Adjust left padding to match scholarship section */
 }
 
 .stat-item h3 {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.5rem; /* Increased font size */
+  font-weight: 500;
   margin-bottom: 10px;
-}
-
-.stat-item p {
-  font-size: 1rem;
-  color: #555;
 }
 
 /* Service detail page styles */
@@ -1316,9 +1312,12 @@ h2::after {
 }
 
 .contact-info .logo {
-  font-size: 1.3rem; /* Smaller font size */
-  font-weight: 700;
-  margin-right: 7rem; /* Increase margin for more space */
+  width: 180px;
+  height: 50px;
+  text-align: center;
+  font-size: 1rem; /* Smaller font size */
+  font-weight: 500;
+  margin-right: 10rem; /* Increase margin for more space */
   padding: 8px 40px;
   background: linear-gradient(135deg, #6e8efb, #a777e3); /* Modern gradient */
   color: white;
@@ -1338,13 +1337,15 @@ h2::after {
 
 .contact-info .text-content h2 {
   font-size: 3rem; /* Smaller font size */
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 10px;
+  letter-spacing: 1px;
 }
 
 .contact-info .text-content h3 {
   font-size: 1.5rem; /* Smaller font size */
   font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .contact-info p {
