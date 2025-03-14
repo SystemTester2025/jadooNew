@@ -1042,6 +1042,36 @@ h2::after {
   transform: translateX(5px);
 }
 
+/* Statistics Section */
+.statistics-section {
+  padding: 50px 0;
+  background: #fff;
+  text-align: center;
+}
+
+.statistics-container {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stat-item {
+  flex: 1;
+  padding: 20px;
+}
+
+.stat-item h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.stat-item p {
+  font-size: 1rem;
+  color: #555;
+}
+
 /* Service detail page styles */
 .service-detail {
   padding-top: 120px;
