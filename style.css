@@ -1296,6 +1296,13 @@ h2::after {
   flex-direction: column;
 }
 
+.contact-section:hover .text-content h2 {
+  background: linear-gradient(135deg, #6b5ce7, #0099ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background 0.5s ease 0.5s, -webkit-text-fill-color 0.5s ease 0.5s; /* Add delay to transition */
+}
+
 .contact-container {
   display: flex;
   flex-direction: column; /* Change to column direction */
@@ -1340,6 +1347,11 @@ h2::after {
   font-weight: 600;
   margin-bottom: 10px;
   letter-spacing: 1px;
+  transition: color 0.3s ease; /* Add transition for color */
+}
+
+.contact-info .text-content h2:hover {
+  color: #0099ff; /* Change color on hover */
 }
 
 .contact-info .text-content h3 {
@@ -1372,6 +1384,7 @@ h2::after {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-bottom: 20px; /* Add margin-bottom */
 }
 
 .contact-form input,
