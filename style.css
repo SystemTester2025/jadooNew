@@ -85,6 +85,12 @@ header .container {
   display: flex;
   gap: 30px;
   align-items: center;
+  /* Remove scholarship link */
+  /* Remove services link */
+}
+
+.nav-links li {
+  margin-right: 50px; /* Add space between links */
 }
 
 .nav-links a {
@@ -99,7 +105,7 @@ header .container {
 .cta-button {
   background: linear-gradient(135deg, #6b5ce7, #0099ff);
   color: white !important;
-  padding: 10px 24px;
+  padding: 10px 50px;
   border-radius: 4px;
   transition: all 0.3s ease;
   position: relative;
