@@ -1379,24 +1379,20 @@ h2::after {
   font-size: 1rem;
   font-weight: 500;
   margin-right: 10rem; 
-  /* padding: 8px 40px; */
-  /* background: linear-gradient(135deg, #6e8efb, #a777e3); */
   color: white;
   border-radius: 4px;
-  /* box-shadow: 0 4px 15px rgba(0,0,0,0.1); */
   transition: all 1s ease;
 }
+
 .contact-info .logo img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.contact-info .logo:hover {
+.contact-section:hover .logo {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-  transition: all 1s ease;
-
 }
 
 .contact-info .text-content {
