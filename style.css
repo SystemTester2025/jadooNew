@@ -1313,7 +1313,7 @@ h2::after {
 .contact-info .logo {
   font-size: 1.3rem; /* Smaller font size */
   font-weight: 700;
-  margin-right: 200px; /* Increase margin for more space */
+  margin-right: 7rem; /* Increase margin for more space */
   padding: 8px 40px;
   background: linear-gradient(135deg, #6e8efb, #a777e3); /* Modern gradient */
   color: white;
