@@ -58,15 +58,15 @@ header .container {
 .logo {
   font-size: 24px;
   font-weight: 700;
-  padding: 8px 16px;
+  padding: 0; /* Remove padding */
+  background: none; /* Remove background */
+  box-shadow: none; /* Remove box-shadow */
+  transition: none; /* Remove transition */
   letter-spacing: 2px;
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
   color: white;
   border-radius: 4px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
 }
 
 .logo:hover {
@@ -1322,20 +1322,22 @@ h2::after {
   width: 180px;
   height: 50px;
   text-align: center;
-  font-size: 1rem; /* Smaller font size */
+  font-size: 1rem;
   font-weight: 500;
-  margin-right: 10rem; /* Increase margin for more space */
-  padding: 8px 40px;
-  background: linear-gradient(135deg, #6e8efb, #a777e3); /* Modern gradient */
+  margin-right: 10rem; 
+  /* padding: 8px 40px; */
+  /* background: linear-gradient(135deg, #6e8efb, #a777e3); */
   color: white;
   border-radius: 4px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
+  /* box-shadow: 0 4px 15px rgba(0,0,0,0.1); */
+  transition: all 1s ease;
 }
 
 .contact-info .logo:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transition: all 1s ease;
+
 }
 
 .contact-info .text-content {
