@@ -1139,6 +1139,12 @@ h2::after {
   background-color: #ddd;
 }
 
+.services-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .services-content {
   width: 45%;
   position: relative;
