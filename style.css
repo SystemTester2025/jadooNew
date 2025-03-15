@@ -17,7 +17,7 @@ html, body {
 
 .container {
   width: 100%;
-  max-width: 1200px; 
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px; 
   box-sizing: border-box;
@@ -25,7 +25,7 @@ html, body {
 
 section {
   width: 100%; /* Ensure sections take full width */
-  padding: 0 15px; /* Add padding for smaller screens */
+  padding: 0 15px;
   box-sizing: border-box; /* Include padding in width calculation */
 }
 
@@ -788,7 +788,7 @@ h2::after {
   background: #fff;
   overflow: hidden;
   min-height: 500px;
-  margin-bottom: 80px; /* Added spacing after About section */
+  margin-bottom: 80px;
 }
 
 .about-bg-text {
@@ -820,7 +820,6 @@ h2::after {
 .about-wrapper {
   position: relative;
   z-index: 1;
-  max-width: 1000px;
   margin: 0 auto;
 }
 
