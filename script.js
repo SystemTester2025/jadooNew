@@ -1,10 +1,48 @@
 $(document).ready(function() {
-  // Check for responsive layouts on window resize
-
-  var elem = document.getElementById('header');
-var show = document.getElementById('hero');
-
-
+  // Define header element
+  var header = $('#header');
+  var scrollThreshold = 50; // Pixels to scroll before changing navbar
+  
+  // Function to update the active section based on scroll position
+  function updateActiveSection() {
+    var scrollPosition = $(window).scrollTop() + header.outerHeight() + 20;
+    
+    // Check hero section
+    if (scrollPosition < $('#about').offset().top) {
+      $('.nav-links a').removeClass('active');
+      $('.nav-links a[href="#"]').addClass('active');
+      return;
+    }
+    
+    // Check about section
+    if (scrollPosition >= $('#about').offset().top && scrollPosition < $('#services').offset().top) {
+      $('.nav-links a').removeClass('active');
+      $('.nav-links a[href="#about"]').addClass('active');
+      return;
+    }
+    
+    // Check contact section
+    if (scrollPosition >= $('#contact').offset().top) {
+      $('.nav-links a').removeClass('active');
+      $('.nav-cta').addClass('active');
+      return;
+    }
+  }
+  
+  // Handle navbar state on scroll
+  $(window).scroll(function() {
+    var scrollPosition = $(this).scrollTop();
+    
+    // Change header from static to fixed when scrolling down
+    if (scrollPosition > scrollThreshold) {
+      header.removeClass('static-header').addClass('fixed-header active-header');
+    } else {
+      header.removeClass('fixed-header active-header').addClass('static-header');
+    }
+    
+    // Update active section on scroll
+    updateActiveSection();
+  });
 
   // Add animated class to nav links with delay
   setTimeout(function() {
@@ -130,9 +168,6 @@ var show = document.getElementById('hero');
       ripple.remove();
     }, 600);
   });
-
-
-
   // Add hover effect for service items
   $('.service-item').hover(
     function() {
@@ -172,4 +207,7 @@ var show = document.getElementById('hero');
 
   // Initialize active section on page load
   updateActiveSection();
+  
+  // Trigger scroll event once to set initial state
+  $(window).trigger('scroll');
 });

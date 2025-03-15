@@ -6,7 +6,6 @@
 }
 
 html, body {
-  height: 100%;
   width: 100%; /* Ensure full width */
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden; /* Prevent horizontal overflow */
@@ -48,6 +47,64 @@ header {
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   transition: all 0.3s ease;
 }
+
+
+/* Add these styles to the existing CSS file - they enhance the fixed header appearance */
+
+/* Active header styles with enhanced shadow and transition effects */
+.active-header {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Fixed header with smooth transition and animation */
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 15px 0; /* Slightly smaller padding when fixed */
+  animation: slideDown 0.3s ease;
+}
+
+/* Animation for navbar appearance */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Add padding for fixed header to prevent content jump */
+.fixed-header ~ .hero {
+  padding-top: 150px; /* Increased padding to account for fixed header */
+}
+
+/* Customize links in active header */
+.active-header .nav-link {
+  color: #444;
+}
+
+.active-header .nav-link:hover,
+.active-header .nav-link.active {
+  color: #6b5ce7;
+}
+
+/* Add transition to the logo */
+.logo img {
+  transition: all 0.3s ease;
+}
+
+/* Slightly reduce logo size in fixed state for aesthetic purposes */
+.fixed-header .logo img {
+  transform: scale(0.95);
+}
+
 
 .static-header {
   position: static;
