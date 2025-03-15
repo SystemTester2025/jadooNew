@@ -210,4 +210,12 @@ $(document).ready(function() {
   
   // Trigger scroll event once to set initial state
   $(window).trigger('scroll');
+
+  // Initialize the services carousel with automatic cycling and smooth transitions
+  $('#servicesCarousel').carousel({
+    interval: 3000, // Change slide every 5 seconds
+    ride: 'carousel',
+    pause: 'hover',
+    wrap: true
+  });
 });
