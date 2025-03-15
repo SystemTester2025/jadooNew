@@ -1,9 +1,10 @@
 $(document).ready(function() {
   // Check for responsive layouts on window resize
-  $(window).resize(function() {
-    // Trigger scroll events to update parallax elements
-    $(window).trigger('scroll');
-  });
+
+  var elem = document.getElementById('header');
+var show = document.getElementById('hero');
+
+
 
   // Add animated class to nav links with delay
   setTimeout(function() {
@@ -25,55 +26,6 @@ $(document).ready(function() {
   $('.nav-links a').click(function() {
     $('.nav-links').removeClass('active');
     $('.hamburger').removeClass('active');
-  });
-
-  // Function to update active navigation link based on scroll position
-  function updateActiveSection() {
-    const scrollPosition = $(window).scrollTop();
-    const headerHeight = $('header').outerHeight() || 80;
-
-    // Get all sections that have corresponding nav links
-    const sections = $('section[id]');
-
-    // Remove active class from all nav links
-    $('.nav-links a').removeClass('active');
-
-    // Calculate thresholds for specific sections
-    const aboutThreshold = $('#about').length ? $('#about').offset().top - headerHeight - 100 : Infinity;
-
-    // If we're at the top of the page, set home as active
-    if (scrollPosition < 100) {
-      $('.nav-links a[href="#"]').addClass('active');
-      return;
-    }
-
-    // Check each section's position
-    let currentSection = '';
-
-    sections.each(function() {
-      const sectionTop = $(this).offset().top - headerHeight - 100;
-      const sectionBottom = sectionTop + $(this).outerHeight();
-
-      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-        currentSection = '#' + $(this).attr('id');
-      }
-    });
-
-    // Apply active class based on current section
-    if (currentSection) {
-      $('.nav-links a[href="' + currentSection + '"]').addClass('active');
-    }
-  }
-
-  // Throttle scroll events for better performance
-  let scrollTimeout;
-  $(window).on('scroll', function() {
-    if (!scrollTimeout) {
-      scrollTimeout = setTimeout(function() {
-        updateActiveSection();
-        scrollTimeout = null;
-      }, 50);
-    }
   });
 
   // Specific handlers for each navigation link
@@ -179,70 +131,7 @@ $(document).ready(function() {
     }, 600);
   });
 
-  // Animate feature items on scroll
-  $(window).on('scroll', function() {
-    $('.feature-item').each(function() {
-      const featurePosition = $(this).offset().top;
-      const windowHeight = $(window).height();
-      const scrollPosition = $(window).scrollTop();
 
-      if (scrollPosition > featurePosition - windowHeight + 100) {
-        $(this).addClass('visible');
-      }
-    });
-  });
-
-  // Trigger scroll events on page load to set initial active state
-  setTimeout(function() {
-    updateActiveSection();
-    $(window).trigger('scroll');
-  }, 500);
-
-  // Parallax effect for About section background text
-  $(window).on('scroll', function() {
-    const scrollPosition = $(window).scrollTop();
-    const aboutSection = $('.about');
-
-    // About section parallax
-    if (aboutSection.length > 0 && $('.about-bg-text').length > 0 && aboutSection.offset()) {
-      const aboutSectionTop = aboutSection.offset().top;
-      const aboutSectionHeight = aboutSection.outerHeight();
-
-      if (scrollPosition > aboutSectionTop - window.innerHeight &&
-        scrollPosition < aboutSectionTop + aboutSectionHeight) {
-        const parallaxValue = (scrollPosition - aboutSectionTop) * 0.3;
-        $('.about-bg-text').css('transform', `translate(-50%, calc(-50% + ${parallaxValue}px))`);
-      }
-    }
-
-    const servicesSection = $('.services-section');
-    const scholarshipSection = $('.scholarship-section');
-
-    // Services section parallax and animations
-    if (servicesSection.length > 0 && $('.services-bg-text').length > 0 && servicesSection.offset()) {
-      const servicesSectionTop = servicesSection.offset().top;
-      const servicesSectionHeight = servicesSection.outerHeight();
-
-      if (scrollPosition > servicesSectionTop - window.innerHeight &&
-        scrollPosition < servicesSectionTop + servicesSectionHeight) {
-        const parallaxValue = (scrollPosition - servicesSectionTop) * 0.2;
-        $('.services-bg-text').css('transform', `translateY(${parallaxValue}px)`);
-      }
-    }
-
-    // Scholarship section parallax and animations
-    if (scholarshipSection.length > 0 && $('.scholarship-bg-text').length > 0 && scholarshipSection.offset()) {
-      const scholarshipSectionTop = scholarshipSection.offset().top;
-      const scholarshipSectionHeight = scholarshipSection.outerHeight();
-
-      if (scrollPosition > scholarshipSectionTop - window.innerHeight &&
-        scrollPosition < scholarshipSectionTop + scholarshipSectionHeight) {
-        const parallaxValue = (scrollPosition - scholarshipSectionTop) * 0.2;
-        const rotateValue = -10 + (parallaxValue * 0.02);
-        $('.scholarship-bg-text').css('transform', `rotate(${rotateValue}deg) translateY(${parallaxValue}px)`);
-      }
-    }
-  });
 
   // Add hover effect for service items
   $('.service-item').hover(
