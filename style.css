@@ -348,9 +348,9 @@ header:hover .logo::after {
 
 /* Hero section */
 .hero {
-  padding-top: 120px;
+  padding-top: 30px;
   height: 100vh;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   position: relative;
   overflow: hidden;
