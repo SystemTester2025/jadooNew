@@ -1837,6 +1837,9 @@ footer {
 }
 
 .footer-social a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   margin-right: 15px;
   transition: transform 0.3s, color 0.3s;
   color: #fff; /* Ensure icons are white */
@@ -1848,9 +1851,9 @@ footer {
 }
 
 .footer-social p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #aaa;
+  margin: 0 6px;
+  font-size: 0.8rem;
+  color: #ffffff;
 }
 
 .footer-social p:not(:last-child) {
@@ -1861,7 +1864,23 @@ footer {
   text-align: center;
   margin-top: 20px;
   font-size: 0.9rem;
-  color: #aaa;
+  background: linear-gradient(90deg, #6e6e6e, #fff, #6e6e6e);
+  background-size: 200% 200%;
+  animation: colorTransition 5s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes colorTransition {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @media (max-width: 768px) {
