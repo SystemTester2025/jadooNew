@@ -243,9 +243,9 @@ header:hover .logo::after {
 
 /* Navbar CTA specific styles */
 .nav-cta {
-  padding: 8px 30px; /* Smaller padding for navbar */
-  font-size: 0.9rem;
-  text-transform: uppercase;
+  padding: 8px 70px; /* Smaller padding for navbar */
+  font-size: 1rem;
+  font-weight: 500px;
   letter-spacing: 1px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background: linear-gradient(135deg, #0099ff, #6b5ce7);
