@@ -213,7 +213,7 @@ $(document).ready(function() {
 
   // Initialize the services carousel with automatic cycling and smooth transitions
   $('#servicesCarousel').carousel({
-    interval: 3000, // Change slide every 5 seconds
+    interval: 3000, // Change slide every 3 seconds
     ride: 'carousel',
     pause: 'hover',
     wrap: true
