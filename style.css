@@ -1538,6 +1538,7 @@ h2::after {
 
 .contact-section:hover {
   background-color: #f5f5f5;
+  /* Remove the transform effect on .text-content */
 }
 
 .contact-container {
@@ -1621,7 +1622,7 @@ h2::after {
 }
 
 .contact-section:hover .contact-info .text-content {
-  transform: translateX(10px);
+  transform: none; /* Remove the transform effect */
 }
 
 .contact-info .text-content h3 {
