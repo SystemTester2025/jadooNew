@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <header>
+  <header class="static-header">
     <div class="container">
       <div class="logo">
         <img src="images/logo/logo-black.png" alt="JADOO" style="height: 50px;">
@@ -24,7 +24,6 @@
           <li><a href="#about" class="nav-link about-link">ABOUT</a></li>
           <li><a href="#contact" class="cta-button nav-cta contact-link">Let's Talk</a></li>
         </ul>
-      
       </nav>
     </div>
   </header>
@@ -214,8 +213,16 @@
     </div>
   </section>
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      // Test if jQuery is working
+      console.log('jQuery is working!');
+    });
+  </script>
   
   <footer>
     <div class="container">

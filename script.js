@@ -4,6 +4,7 @@ $(document).ready(function() {
     // Trigger scroll events to update parallax elements
     $(window).trigger('scroll');
   });
+
   // Add animated class to nav links with delay
   setTimeout(function() {
     $('.nav-links li').each(function(index) {
@@ -13,6 +14,7 @@ $(document).ready(function() {
       }, 100 * index);
     });
   }, 500);
+
   // Mobile menu toggle
   $('.hamburger').click(function() {
     $('.nav-links').toggleClass('active');
@@ -29,40 +31,40 @@ $(document).ready(function() {
   function updateActiveSection() {
     const scrollPosition = $(window).scrollTop();
     const headerHeight = $('header').outerHeight() || 80;
-    
+
     // Get all sections that have corresponding nav links
     const sections = $('section[id]');
-    
+
     // Remove active class from all nav links
     $('.nav-links a').removeClass('active');
-    
+
     // Calculate thresholds for specific sections
     const aboutThreshold = $('#about').length ? $('#about').offset().top - headerHeight - 100 : Infinity;
-    
+
     // If we're at the top of the page, set home as active
     if (scrollPosition < 100) {
       $('.nav-links a[href="#"]').addClass('active');
       return;
     }
-    
+
     // Check each section's position
     let currentSection = '';
-    
+
     sections.each(function() {
       const sectionTop = $(this).offset().top - headerHeight - 100;
       const sectionBottom = sectionTop + $(this).outerHeight();
-      
+
       if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
         currentSection = '#' + $(this).attr('id');
       }
     });
-    
+
     // Apply active class based on current section
     if (currentSection) {
       $('.nav-links a[href="' + currentSection + '"]').addClass('active');
     }
   }
-  
+
   // Throttle scroll events for better performance
   let scrollTimeout;
   $(window).on('scroll', function() {
@@ -78,11 +80,11 @@ $(document).ready(function() {
   // HOME link - always scroll to top
   $('.nav-links a[href="#"]').on('click', function(e) {
     e.preventDefault();
-    
+
     // Update active state immediately
     $('.nav-links a').removeClass('active');
     $(this).addClass('active');
-    
+
     // Always scroll to the very top (0)
     $('html, body').animate({
       scrollTop: 0
@@ -91,15 +93,15 @@ $(document).ready(function() {
       $('.nav-links a[href="#"]').addClass('active');
     });
   });
-  
+
   // ABOUT link - scroll to about section
   $('.nav-links a[href="#about"]').on('click', function(e) {
     e.preventDefault();
-    
+
     // Update active state immediately
     $('.nav-links a').removeClass('active');
     $(this).addClass('active');
-    
+
     // Scroll to about section with offset
     const aboutOffset = $('#about').offset().top - $('header').outerHeight() - 20;
     $('html, body').animate({
@@ -109,22 +111,22 @@ $(document).ready(function() {
       $('.nav-links a[href="#about"]').addClass('active');
     });
   });
-  
+
   // Generic handler for other section links
   $('.nav-links a[href^="#"]:not([href="#"]):not([href="#about"])').on('click', function(e) {
     e.preventDefault();
 
     const target = this.hash;
-    
+
     // Update active class immediately on click
     $('.nav-links a').removeClass('active');
     $(this).addClass('active');
 
     // Only attempt to scroll if the target exists
-    if(target) {
+    if (target) {
       const $target = $(target);
 
-      if($target.length) {
+      if ($target.length) {
         $('html, body').animate({
           'scrollTop': $target.offset().top - 80
         }, 800, 'swing', function() {
@@ -138,14 +140,14 @@ $(document).ready(function() {
   // Dedicated handler for the "Let's Talk" button in navbar
   $('.nav-cta').off('click').on('click', function(e) {
     e.preventDefault();
-    
+
     // Update active state immediately
     $('.nav-links a').removeClass('active');
     $(this).addClass('active');
-    
+
     // Calculate the exact position of the contact section
     const contactOffset = $('.contact-section').offset().top - $('header').outerHeight() - 20;
-    
+
     // Scroll to the contact section with animation
     $('html, body').animate({
       scrollTop: contactOffset
@@ -154,7 +156,7 @@ $(document).ready(function() {
       $('.nav-cta').addClass('active');
       updateActiveSection();
     });
-    
+
     // Return false to prevent any other click handlers from executing
     return false;
   });
@@ -206,8 +208,8 @@ $(document).ready(function() {
       const aboutSectionTop = aboutSection.offset().top;
       const aboutSectionHeight = aboutSection.outerHeight();
 
-      if (scrollPosition > aboutSectionTop - window.innerHeight && 
-          scrollPosition < aboutSectionTop + aboutSectionHeight) {
+      if (scrollPosition > aboutSectionTop - window.innerHeight &&
+        scrollPosition < aboutSectionTop + aboutSectionHeight) {
         const parallaxValue = (scrollPosition - aboutSectionTop) * 0.3;
         $('.about-bg-text').css('transform', `translate(-50%, calc(-50% + ${parallaxValue}px))`);
       }
@@ -221,27 +223,27 @@ $(document).ready(function() {
       const servicesSectionTop = servicesSection.offset().top;
       const servicesSectionHeight = servicesSection.outerHeight();
 
-      if (scrollPosition > servicesSectionTop - window.innerHeight && 
-          scrollPosition < servicesSectionTop + servicesSectionHeight) {
+      if (scrollPosition > servicesSectionTop - window.innerHeight &&
+        scrollPosition < servicesSectionTop + servicesSectionHeight) {
         const parallaxValue = (scrollPosition - servicesSectionTop) * 0.2;
         $('.services-bg-text').css('transform', `translateY(${parallaxValue}px)`);
       }
     }
-    
+
     // Scholarship section parallax and animations
     if (scholarshipSection.length > 0 && $('.scholarship-bg-text').length > 0 && scholarshipSection.offset()) {
       const scholarshipSectionTop = scholarshipSection.offset().top;
       const scholarshipSectionHeight = scholarshipSection.outerHeight();
 
-      if (scrollPosition > scholarshipSectionTop - window.innerHeight && 
-          scrollPosition < scholarshipSectionTop + scholarshipSectionHeight) {
+      if (scrollPosition > scholarshipSectionTop - window.innerHeight &&
+        scrollPosition < scholarshipSectionTop + scholarshipSectionHeight) {
         const parallaxValue = (scrollPosition - scholarshipSectionTop) * 0.2;
         const rotateValue = -10 + (parallaxValue * 0.02);
         $('.scholarship-bg-text').css('transform', `rotate(${rotateValue}deg) translateY(${parallaxValue}px)`);
       }
     }
   });
-  
+
   // Add hover effect for service items
   $('.service-item').hover(
     function() {
@@ -251,7 +253,7 @@ $(document).ready(function() {
       $(this).find('.service-content').css('background-color', 'white');
     }
   );
-  
+
   // Add hover animation for the learn more button in services
   $('.learn-more').hover(
     function() {
@@ -273,12 +275,12 @@ $(document).ready(function() {
       $('.contact-info .logo').removeClass('animated');
     }
   );
-  
+
   // Update active section on window resize
   $(window).on('resize', function() {
     updateActiveSection();
   });
-  
+
   // Initialize active section on page load
   updateActiveSection();
 });
