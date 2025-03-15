@@ -824,6 +824,8 @@ h2::after {
   width: 100%;
   height: auto; /* Maintain aspect ratio */
   object-fit: cover;
+  max-width: 100vw; /* Ensure the image doesn't exceed the viewport width */
+  max-height: 100vh; /* Ensure the image doesn't exceed the viewport height */
 }
 
 .about-wrapper {
