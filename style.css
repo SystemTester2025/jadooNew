@@ -150,15 +150,16 @@ header:hover .logo::after {
 
 .nav-links li {
   margin-right: 50px; /* Add space between links */
+  position: relative;
+  transition: all 0.3s ease;
 }
 
 .nav-links a {
-  font-weight: 500;
   transition: color 0.3s;
 }
 
 .nav-links a:hover, .nav-links a.active {
-  color: #555;
+  color: #6b5ce7;
 }
 
 /* Base CTA button styles */
@@ -184,6 +185,13 @@ header:hover .logo::after {
 }
 
 .nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background: linear-gradient(135deg, #6b5ce7, #0099ff);
+  animation: none;
+}
+
+.nav-cta.active {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   background: linear-gradient(135deg, #6b5ce7, #0099ff);
@@ -484,25 +492,149 @@ h2::after {
   }
 }
 
-/* Navigation link animations */
+/* Navigation styles */
 .nav-links a:not(.cta-button) {
   position: relative;
+  color: #333;
+  font-weight: 500;
+  padding: 5px 0;
+  display: inline-block;
+  transform: scale(1);
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.nav-links a:not(.cta-button)::after {
+/* Common styles for all nav links */
+.nav-link {
+  position: relative;
+  font-weight: 500;
+  padding: 5px 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  color: #333;
+}
+
+.nav-link::after {
   content: '';
   position: absolute;
-  width: 0;
-  height: 2px;
   bottom: -5px;
   left: 0;
-  background-color: #555;
-  transition: width 0.3s ease;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #6b5ce7, #0099ff);
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.nav-links a:not(.cta-button):hover::after,
-.nav-links a:not(.cta-button).active::after {
+.nav-link.active::after {
   width: 100%;
+}
+
+.nav-link.active {
+  color: #6b5ce7;
+  font-weight: 600;
+  transform: translateY(-2px);
+}
+
+.nav-link:hover {
+  color: #6b5ce7;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Specific transitions for each link */
+.home-link, .about-link, .services-link, .scholarship-link {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Home link specific styles */
+.home-link {
+  color: #333;
+}
+
+.home-link.active {
+  color: #6b5ce7;
+  transform: translateY(-2px);
+}
+
+/* About link specific styles */
+.about-link {
+  color: #333;
+}
+
+.about-link.active {
+  color: #6b5ce7;
+  transform: translateY(-2px);
+}
+
+/* Services link specific styles */
+.services-link {
+  color: #333;
+}
+
+.services-link.active {
+  color: #6b5ce7;
+  transform: translateY(-2px);
+}
+
+/* Scholarship link specific styles */
+.scholarship-link {
+  color: #333;
+}
+
+.scholarship-link.active {
+  color: #6b5ce7;
+  transform: translateY(-2px);
+}
+
+/* Specific styles for the Let's Talk button */
+.contact-link {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: transform 0.5s ease;
+  transform: skewX(-15deg);
+}
+
+.contact-link:hover::before {
+  transform: translateX(100%) skewX(-15deg);
+}
+
+/* Active state */
+.contact-link.active {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(107, 92, 231, 0.3);
+  background: linear-gradient(135deg, #0099ff, #6b5ce7);
+}
+
+/* Prevent conflicts with other navigation styles */
+.nav-links a.contact-link.active::after {
+  display: none; /* Remove underline effect from CTA buttons */
+}
+
+/* Override previous styles to ensure consistency */
+.nav-links a.nav-link::after {
+  display: block;
+}
+
+/* Add transition for active state */
+.nav-links li {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Add subtle hover effect for nav items */
+.nav-links li:hover {
+  transform: translateY(-1px);
 }
 
 /* Responsive styles */
@@ -1661,5 +1793,71 @@ h2::after {
   
   .contact-info .text-content h3 {
     font-size: 1rem;
+  }
+}
+
+/* Footer styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 40px 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-logo img {
+  height: 50px;
+}
+
+.footer-links ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #6b5ce7;
+}
+
+.footer-social a {
+  margin-right: 15px;
+  transition: transform 0.3s;
+}
+
+.footer-social a:hover {
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-social {
+    margin-top: 20px;
   }
 }

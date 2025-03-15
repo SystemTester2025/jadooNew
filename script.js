@@ -25,38 +25,138 @@ $(document).ready(function() {
     $('.hamburger').removeClass('active');
   });
 
-  // Add smooth scrolling to nav links
-  $('a[href^="#"]').on('click', function(e) {
+  // Function to update active navigation link based on scroll position
+  function updateActiveSection() {
+    const scrollPosition = $(window).scrollTop();
+    const headerHeight = $('header').outerHeight() || 80;
+    
+    // Get all sections that have corresponding nav links
+    const sections = $('section[id]');
+    
+    // Remove active class from all nav links
+    $('.nav-links a').removeClass('active');
+    
+    // Calculate thresholds for specific sections
+    const aboutThreshold = $('#about').length ? $('#about').offset().top - headerHeight - 100 : Infinity;
+    
+    // If we're at the top of the page, set home as active
+    if (scrollPosition < 100) {
+      $('.nav-links a[href="#"]').addClass('active');
+      return;
+    }
+    
+    // Check each section's position
+    let currentSection = '';
+    
+    sections.each(function() {
+      const sectionTop = $(this).offset().top - headerHeight - 100;
+      const sectionBottom = sectionTop + $(this).outerHeight();
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        currentSection = '#' + $(this).attr('id');
+      }
+    });
+    
+    // Apply active class based on current section
+    if (currentSection) {
+      $('.nav-links a[href="' + currentSection + '"]').addClass('active');
+    }
+  }
+  
+  // Throttle scroll events for better performance
+  let scrollTimeout;
+  $(window).on('scroll', function() {
+    if (!scrollTimeout) {
+      scrollTimeout = setTimeout(function() {
+        updateActiveSection();
+        scrollTimeout = null;
+      }, 50);
+    }
+  });
+
+  // Specific handlers for each navigation link
+  // HOME link - always scroll to top
+  $('.nav-links a[href="#"]').on('click', function(e) {
+    e.preventDefault();
+    
+    // Update active state immediately
+    $('.nav-links a').removeClass('active');
+    $(this).addClass('active');
+    
+    // Always scroll to the very top (0)
+    $('html, body').animate({
+      scrollTop: 0
+    }, 800, 'swing', function() {
+      // Make sure home is still active after animation
+      $('.nav-links a[href="#"]').addClass('active');
+    });
+  });
+  
+  // ABOUT link - scroll to about section
+  $('.nav-links a[href="#about"]').on('click', function(e) {
+    e.preventDefault();
+    
+    // Update active state immediately
+    $('.nav-links a').removeClass('active');
+    $(this).addClass('active');
+    
+    // Scroll to about section with offset
+    const aboutOffset = $('#about').offset().top - $('header').outerHeight() - 20;
+    $('html, body').animate({
+      scrollTop: aboutOffset
+    }, 800, 'swing', function() {
+      // Make sure about is still active after animation
+      $('.nav-links a[href="#about"]').addClass('active');
+    });
+  });
+  
+  // Generic handler for other section links
+  $('.nav-links a[href^="#"]:not([href="#"]):not([href="#about"])').on('click', function(e) {
     e.preventDefault();
 
     const target = this.hash;
+    
+    // Update active class immediately on click
+    $('.nav-links a').removeClass('active');
+    $(this).addClass('active');
 
     // Only attempt to scroll if the target exists
-    if(target && target !== '#') {
+    if(target) {
       const $target = $(target);
 
       if($target.length) {
         $('html, body').animate({
           'scrollTop': $target.offset().top - 80
-        }, 800, 'swing');
+        }, 800, 'swing', function() {
+          // Update active section after animation completes
+          updateActiveSection();
+        });
       }
     }
   });
 
-  // Add smooth scrolling to "Let's Talk" link in navbar
-  $('.nav-cta').on('click', function(e) {
+  // Dedicated handler for the "Let's Talk" button in navbar
+  $('.nav-cta').off('click').on('click', function(e) {
     e.preventDefault();
+    
+    // Update active state immediately
+    $('.nav-links a').removeClass('active');
+    $(this).addClass('active');
+    
+    // Calculate the exact position of the contact section
+    const contactOffset = $('.contact-section').offset().top - $('header').outerHeight() - 20;
+    
+    // Scroll to the contact section with animation
     $('html, body').animate({
-      scrollTop: $('.contact-section').offset().top - 80
-    }, 800, 'swing');
-  });
-
-  // Add smooth scrolling to "HOME" link in navbar
-  $('.nav-links a[href="#"]').on('click', function(e) {
-    e.preventDefault();
-    $('html, body').animate({
-      scrollTop: 0
-    }, 800, 'swing');
+      scrollTop: contactOffset
+    }, 800, 'swing', function() {
+      // Make sure contact link is still active after animation
+      $('.nav-cta').addClass('active');
+      updateActiveSection();
+    });
+    
+    // Return false to prevent any other click handlers from executing
+    return false;
   });
 
   // Add ripple effect for hero CTA button
@@ -90,8 +190,9 @@ $(document).ready(function() {
     });
   });
 
-  // Trigger once on page load
+  // Trigger scroll events on page load to set initial active state
   setTimeout(function() {
+    updateActiveSection();
     $(window).trigger('scroll');
   }, 500);
 
@@ -171,4 +272,12 @@ $(document).ready(function() {
       $('.contact-info .logo').removeClass('animated');
     }
   );
+  
+  // Update active section on window resize
+  $(window).on('resize', function() {
+    updateActiveSection();
+  });
+  
+  // Initialize active section on page load
+  updateActiveSection();
 });
