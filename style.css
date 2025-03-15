@@ -1556,16 +1556,15 @@ h2::after {
 }
 
 .contact-info .logo {
-  width: 180px;
-  height: auto;
-  margin-right: 30px;
-  transition: all 0.5s ease;
+  /* width: 180px; */
+  /* height: auto; */
+  transition: all 0.8s ease;
   position: relative;
   overflow: hidden;
 }
 
 .contact-info .logo img {
-  width: 100%;
+  width: 180px;
   height: auto;
   object-fit: contain;
   transition: transform 0.5s ease;
@@ -1617,7 +1616,7 @@ h2::after {
 
 .contact-info .text-content {
   flex: 1;
-  margin-left: 8rem;
+  /* margin-left: 8rem; */
   transition: transform 0.3s ease;
 }
 
@@ -1626,8 +1625,8 @@ h2::after {
 }
 
 .contact-info .text-content h3 {
-  font-size: 1.5rem;
-  font-weight: 400;
+  font-size: 2rem;
+  font-weight: 500;
   color: #000;
   line-height: 1.5;
 }
@@ -1674,50 +1673,56 @@ h2::after {
 }
 
 .contact-form {
-  flex: 1.5;
-  min-width: 300px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .contact-form input,
 .contact-form textarea {
-  padding: 12px 15px;
+  padding: 15px;
   border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 0.95rem;
+  border-radius: 5px;
+  font-size: 1rem;
   width: 100%;
-  background-color: #fff;
-  transition: border-color 0.3s ease;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: #6b5ce7;
+  background-color: #fff;
   outline: none;
 }
 
+.contact-form input {
+  flex: 1 1 calc(50% - 10px);
+}
+
 .contact-form textarea {
-  grid-column: span 2;
+  flex: 1 1 100%;
   resize: vertical;
-  min-height: 120px;
+  min-height: 150px;
 }
 
 .contact-form button {
-  grid-column: span 2;
-  padding: 12px 20px;
+  align-self: flex-end;
+  padding: 15px 30px;
   background: linear-gradient(135deg, #6b5ce7, #0099ff);
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 0.95rem;
+  border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  text-align: left;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .contact-form button:hover {
