@@ -329,7 +329,8 @@ header:hover .logo::after {
 }
 
 .hero-content {
-  width: 50%;
+  width: 100%;
+  padding-top: 30px;
   position: relative;
   z-index: 2;
 }
@@ -379,7 +380,7 @@ h1 {
 }
 
 .services {
-  width: 40%;
+  width: 100%; /* Adjust width to fit Bootstrap grid */
   background: rgba(255, 255, 255, 0.85);
   padding: 30px;
   border-radius: 10px;
