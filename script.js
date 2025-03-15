@@ -200,8 +200,6 @@ $(document).ready(function() {
   $(window).on('scroll', function() {
     const scrollPosition = $(window).scrollTop();
     const aboutSection = $('.about');
-    const servicesSection = $('.services-section');
-    const scholarshipSection = $('.scholarship-section');
 
     // About section parallax
     if (aboutSection.length > 0 && $('.about-bg-text').length > 0 && aboutSection.offset()) {
@@ -211,10 +209,13 @@ $(document).ready(function() {
       if (scrollPosition > aboutSectionTop - window.innerHeight && 
           scrollPosition < aboutSectionTop + aboutSectionHeight) {
         const parallaxValue = (scrollPosition - aboutSectionTop) * 0.3;
-        $('.about-bg-text').css('transform', `translateX(${parallaxValue}px)`);
+        $('.about-bg-text').css('transform', `translate(-50%, calc(-50% + ${parallaxValue}px))`);
       }
     }
-    
+
+    const servicesSection = $('.services-section');
+    const scholarshipSection = $('.scholarship-section');
+
     // Services section parallax and animations
     if (servicesSection.length > 0 && $('.services-bg-text').length > 0 && servicesSection.offset()) {
       const servicesSectionTop = servicesSection.offset().top;
