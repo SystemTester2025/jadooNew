@@ -1832,11 +1832,13 @@ footer {
 
 .footer-social a {
   margin-right: 15px;
-  transition: transform 0.3s;
+  transition: transform 0.3s, color 0.3s;
+  color: #fff; /* Ensure icons are white */
 }
 
 .footer-social a:hover {
   transform: translateY(-3px);
+  color: #6b5ce7; /* Change color on hover */
 }
 
 .footer-bottom {
