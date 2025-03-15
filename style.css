@@ -1798,8 +1798,8 @@ h2::after {
 
 /* Footer styles */
 footer {
-  background-color: #333;
-  color: #fff;
+  background-color: #ffffff;
+  color: #000000;
   padding: 40px 0;
 }
 
@@ -1821,9 +1821,14 @@ footer {
 }
 
 .footer-links a {
-  color: #fff;
+  color: #131313;
   text-decoration: none;
   transition: color 0.3s;
+  background: linear-gradient(90deg, #6e6e6e, #fff, #6e6e6e);
+  background-size: 200% 200%;
+  animation: colorTransition 5s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .footer-links a:hover {
@@ -1842,7 +1847,12 @@ footer {
   gap: 5px;
   margin-right: 15px;
   transition: transform 0.3s, color 0.3s;
-  color: #fff; /* Ensure icons are white */
+  color: #000000; /* Ensure icons are white */
+  background: linear-gradient(90deg, #d4d4d4, #000000, #c4c4c4);
+  background-size: 200% 200%;
+  animation: colorTransition 5s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .footer-social a:hover {
@@ -1853,7 +1863,7 @@ footer {
 .footer-social p {
   margin: 0 6px;
   font-size: 0.8rem;
-  color: #ffffff;
+  color: #000000;
 }
 
 .footer-social p:not(:last-child) {
@@ -1862,9 +1872,8 @@ footer {
 
 .footer-bottom {
   text-align: center;
-  margin-top: 20px;
   font-size: 0.9rem;
-  background: linear-gradient(90deg, #6e6e6e, #fff, #6e6e6e);
+  background: linear-gradient(90deg, #d4d4d4, #000000, #c4c4c4);
   background-size: 200% 200%;
   animation: colorTransition 5s linear infinite;
   -webkit-background-clip: text;
