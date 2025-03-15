@@ -161,6 +161,7 @@ header:hover .logo::after {
   color: #555;
 }
 
+/* Base CTA button styles */
 .cta-button {
   background: linear-gradient(135deg, #6b5ce7, #0099ff);
   color: white !important;
@@ -171,17 +172,101 @@ header:hover .logo::after {
   z-index: 1;
 }
 
-.cta-button:hover {
+/* Navbar CTA specific styles */
+.nav-cta {
+  padding: 8px 30px; /* Smaller padding for navbar */
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   background: linear-gradient(135deg, #0099ff, #6b5ce7);
+  animation: pulse 2s infinite;
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background: linear-gradient(135deg, #6b5ce7, #0099ff);
+  animation: none;
+}
+
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.nav-cta:hover::before {
+  transform: translateX(100%);
+}
+
+/* Hero CTA specific styles */
+.hero-cta {
+  display: inline-block;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  border: none;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.hero-cta:hover {
+  transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  background: linear-gradient(135deg, #a777e3, #6e8efb);
 }
 
-.cta-button:active {
-  transform: none;
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(107, 92, 231, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(107, 92, 231, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(107, 92, 231, 0);
+  }
 }
 
-.cta-button::before {
-  display: none;
+.nav-cta:active {
+  transform: translateY(-1px);
+}
+
+.hero-cta:active {
+  transform: translateY(-1px);
+}
+
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: wave 2s linear infinite;
+}
+
+@keyframes wave {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .hamburger {
@@ -373,10 +458,30 @@ h2::after {
   color: #777;
 }
 
-/* Button styles */
+/* Button ripple effect */
 .cta-button {
   position: relative;
   overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+  width: 100px;
+  height: 100px;
+  margin-top: -50px;
+  margin-left: -50px;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
 
 /* Navigation link animations */

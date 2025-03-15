@@ -44,7 +44,7 @@ $(document).ready(function() {
   });
 
   // Add smooth scrolling to "Let's Talk" link in navbar
-  $('.cta-button').on('click', function(e) {
+  $('.nav-cta').on('click', function(e) {
     e.preventDefault();
     $('html, body').animate({
       scrollTop: $('.contact-section').offset().top - 80
@@ -59,8 +59,8 @@ $(document).ready(function() {
     }, 800, 'swing');
   });
 
-  // Add button click animation
-  $('.cta-button').on('click', function(e) {
+  // Add ripple effect for hero CTA button
+  $('.hero-cta').on('click', function(e) {
     const x = e.pageX - $(this).offset().left;
     const y = e.pageY - $(this).offset().top;
 
