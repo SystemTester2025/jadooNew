@@ -884,6 +884,20 @@ h2::after {
   max-width: 100vw; /* Ensure the image doesn't exceed the viewport width */
   max-height: 100vh; /* Ensure the image doesn't exceed the viewport height */
   transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+  animation: waveEffect 6s infinite linear; /* Add wave effect animation */
+}
+
+/* Define the wave effect animation */
+@keyframes waveEffect {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 .about-wrapper {
