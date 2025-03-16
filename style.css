@@ -249,17 +249,34 @@ header:hover .logo::after {
   letter-spacing: 1px;
   transition: background 0.3s ease, box-shadow 0.3s ease;
   background: linear-gradient(135deg, #0099ff, #6b5ce7);
-  animation: none; /* Remove any animations */
+  animation: pulse 2s infinite; /* Add back the pulse animation */
+  position: relative;
+  z-index: 1;
 }
 
 .nav-cta:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   background: linear-gradient(135deg, #6b5ce7, #0099ff);
+  animation: none; /* Stop animation on hover */
 }
 
 .nav-cta.active {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   background: linear-gradient(135deg, #6b5ce7, #0099ff);
+  animation: none; /* No animation when active */
+}
+
+/* Add back the pulse animation */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(107, 92, 231, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(107, 92, 231, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(107, 92, 231, 0);
+  }
 }
 
 /* Remove the ::before pseudo-element that might be causing issues */
