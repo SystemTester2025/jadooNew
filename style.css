@@ -245,45 +245,36 @@ header:hover .logo::after {
 .nav-cta {
   padding: 8px 70px; /* Smaller padding for navbar */
   font-size: 1rem;
-  font-weight: 500px;
+  font-weight: 500;
   letter-spacing: 1px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
   background: linear-gradient(135deg, #0099ff, #6b5ce7);
-  animation: pulse 2s infinite;
+  animation: none; /* Remove any animations */
 }
 
 .nav-cta:hover {
-  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   background: linear-gradient(135deg, #6b5ce7, #0099ff);
-  animation: none;
 }
 
 .nav-cta.active {
-  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   background: linear-gradient(135deg, #6b5ce7, #0099ff);
-  animation: none;
 }
 
+/* Remove the ::before pseudo-element that might be causing issues */
 .nav-cta::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, 
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
+  display: none;
 }
 
-.nav-cta:hover::before {
-  transform: translateX(100%);
+/* Prevent conflicts with other navigation styles */
+.nav-links a.contact-link.active::after {
+  display: none; /* Remove underline effect from CTA buttons */
+}
+
+/* Override previous styles to ensure consistency */
+.nav-links a.nav-link::after {
+  display: block;
 }
 
 /* Hero CTA specific styles */

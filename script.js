@@ -86,11 +86,14 @@ $(document).ready(function() {
 
   // ABOUT link - navigate to about.html
   $('.nav-links a[href="about.html"]').on('click', function(e) {
-    // No need to prevent default - let the browser navigate to about.html
+    // Remove any hover effects immediately before navigation
+    $('.nav-links a').removeClass('hover-effect');
     
     // Update active state immediately
     $('.nav-links a').removeClass('active');
     $(this).addClass('active');
+    
+    // Let the default link behavior work - no preventDefault()
   });
 
   // Generic handler for other section links
