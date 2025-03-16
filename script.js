@@ -1,4 +1,15 @@
 $(document).ready(function() {
+  // Preloader functionality
+  setTimeout(function() {
+    $('.preloader').addClass('fade-out');
+    $('body').removeClass('loading');
+    
+    // Remove preloader from DOM after animation completes
+    setTimeout(function() {
+      $('.preloader').remove();
+    }, 500);
+  }, 800); // Reduced from 1500ms to 800ms for faster loading
+  
   // Define header element
   var header = $('#header');
   var scrollThreshold = 50; // Pixels to scroll before changing navbar
