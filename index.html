@@ -276,12 +276,27 @@
             Dubai, United Arab Emirates.</p>
         </div>
         <div class="contact-form col-md-6">
-          <input type="text" class="form-control mb-3" placeholder="First Name">
-          <input type="text" class="form-control mb-3" placeholder="Last Name">
-          <input type="email" class="form-control mb-3" placeholder="Email">
-          <input type="text" class="form-control mb-3" placeholder="Phone Number">
-          <textarea class="form-control mb-3" placeholder="Message"></textarea>
-          <button type="submit" class="btn btn-primary">SEND A MESSAGE →</button>
+          <div class="form-group">
+            <input type="text" class="form-control" id="firstName" placeholder=" ">
+            <label for="firstName" class="form-label">First Name</label>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="lastName" placeholder=" ">
+            <label for="lastName" class="form-label">Last Name</label>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" id="email" placeholder=" ">
+            <label for="email" class="form-label">Email Address</label>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="phone" placeholder=" ">
+            <label for="phone" class="form-label">Phone Number</label>
+          </div>
+          <div class="form-group full-width">
+            <textarea class="form-control" id="message" placeholder=" "></textarea>
+            <label for="message" class="form-label">Brief message</label>
+          </div>
+          <button type="submit">SEND MESSAGE <i class="fas fa-paper-plane ml-2"></i></button>
         </div>
       </div>
     </div>
