@@ -15,5 +15,8 @@ Route::get('/about', [FrontendController::class, 'about'])->name('about');
 Route::get('/services/{slug}', [FrontendController::class, 'service'])->name('service');
 Route::get('/page/{slug}', [FrontendController::class, 'page'])->name('page');
 
-// Include admin routes
-require __DIR__.'/admin.php';
+// Admin Routes
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+    // Dashboard
+    Route::get('/', [App\Http\Controllers\Backend\DashboardController::class, 'index'])->name('dashboard');
+});

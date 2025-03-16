@@ -403,6 +403,11 @@ header:hover .logo::after {
   justify-content: space-between;
   align-items: flex-start;
 }
+.hero .top-section {
+  width: 100%;
+ 
+}
+
 
 .hero-content {
   width: 100%;
