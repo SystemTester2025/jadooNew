@@ -84,22 +84,13 @@ $(document).ready(function() {
     });
   });
 
-  // ABOUT link - scroll to about section
-  $('.nav-links a[href="#about"]').on('click', function(e) {
-    e.preventDefault();
-
+  // ABOUT link - navigate to about.html
+  $('.nav-links a[href="about.html"]').on('click', function(e) {
+    // No need to prevent default - let the browser navigate to about.html
+    
     // Update active state immediately
     $('.nav-links a').removeClass('active');
     $(this).addClass('active');
-
-    // Scroll to about section with offset
-    const aboutOffset = $('#about').offset().top - $('header').outerHeight() - 20;
-    $('html, body').animate({
-      scrollTop: aboutOffset
-    }, 800, 'swing', function() {
-      // Make sure about is still active after animation
-      $('.nav-links a[href="#about"]').addClass('active');
-    });
   });
 
   // Generic handler for other section links
