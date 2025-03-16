@@ -1793,7 +1793,21 @@ h2::after {
   left: 0;
   width: 100%;
   height: 5px;
-  background: linear-gradient(90deg, #6b5ce7, #0099ff);
+  background: linear-gradient(90deg, #ddd, #ccc, #949494, #353535);
+  background-size: 300% 100%;
+  animation: gradientBorder 6s linear infinite alternate;
+}
+
+@keyframes gradientBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .form-group {
@@ -1847,41 +1861,75 @@ h2::after {
 }
 
 .contact-form button {
-  background: linear-gradient(135deg, #6b5ce7, #0099ff);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 25px; /* Reduced from 10px 30px */
-  font-size: 14px; /* Reduced from 15px */
+  background: transparent;
+  color: #333;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 1px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-left: auto;
-  margin-top: 0; /* Remove any top margin */
+  padding: 8px 15px;
   position: relative;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 10px;
+  text-align: left;
+  border-radius: 4px;
+  border: 1px solid #ddd;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(107, 92, 231, 0.3);
+  animation: pulse 2s infinite; /* Keep the pulse animation */
+  z-index: 1;
 }
 
 .contact-form button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(107, 92, 231, 0.4);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-color: #6b5ce7;
+  color: #6b5ce7;
+  animation: none; /* Stop animation on hover */
+  transform: translateY(-2px);
 }
 
+.contact-form button:active {
+  transform: translateY(-1px);
+}
+
+.contact-form button span {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.contact-form button:hover span {
+  transform: translateX(5px);
+}
+
+/* Remove the previous button::after that created the underline effect */
 .contact-form button::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: all 0.5s ease;
+  display: none;
 }
 
-.contact-form button:hover::after {
-  left: 100%;
+/* Add the learn-more styles to reference */
+.learn-more {
+  color: #000;
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+.arrow-icon {
+  display: inline-block;
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+}
+
+.learn-more:hover {
+  color: #333;
+}
+
+.learn-more:hover .arrow-icon {
+  transform: translateX(5px);
 }
 
 @media (max-width: 768px) {
