@@ -1394,6 +1394,7 @@ h2::after {
   position: relative;
   background: #f8f9fa;
   overflow: hidden;
+  cursor: default; /* Ensure default cursor in this section */
 }
 
 .statistics-container {
@@ -1409,6 +1410,7 @@ h2::after {
   transition: all 0.3s ease;
   flex: 1;
   min-width: 200px;
+  cursor: default; /* Ensure default cursor on stat items */
 }
 
 /* Add Bootstrap responsive classes */
@@ -1416,6 +1418,7 @@ h2::after {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  cursor: default; /* Ensure default cursor on column wrapper */
 }
 
 .stat-item h3 {
@@ -1424,6 +1427,7 @@ h2::after {
   margin-bottom: 10px;
   color: #000;
   position: relative;
+  cursor: default; /* Ensure default cursor on headlines */
 }
 
 .stat-item h3 .counter {
@@ -1431,6 +1435,7 @@ h2::after {
   color: #000000;
   font-weight: 700;
   transition: color .6s ease-in-out;
+  cursor: default; /* Ensure default cursor on counter numbers */
 }
 
 .stat-item:hover h3 .counter {
