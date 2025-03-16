@@ -1426,10 +1426,37 @@ h2::after {
   position: relative;
 }
 
+.stat-item h3 .counter {
+  display: inline-block;
+  color: #000000;
+  font-weight: 700;
+  transition: color .6s ease-in-out;
+}
+
+.stat-item:hover h3 .counter {
+  color: #929292;
+}
+
 .stat-item p {
   font-size: 1rem;
   color: #666;
   margin: 0;
+}
+
+/* Animation for counters */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.counter.animated {
+  animation: countUp 0.5s forwards;
 }
 
 /* Responsive rules */

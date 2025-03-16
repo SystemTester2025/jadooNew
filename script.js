@@ -53,7 +53,67 @@ $(document).ready(function() {
     
     // Update active section on scroll
     updateActiveSection();
+    
+    // Check if statistics section is in view to start counters
+    checkCounterVisibility();
   });
+
+  // Function to check if element is in viewport
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom >= 0
+    );
+  }
+  
+  // Function to animate counter
+  function animateCounter(counter) {
+    const target = parseFloat($(counter).attr('data-count'));
+    const duration = 3000; // Animation duration in milliseconds
+    const decimals = String(target).includes('.') ? 1 : 0;
+    const startTime = Date.now();
+    
+    // Add animated class for CSS animation
+    $(counter).addClass('animated');
+    
+    // Start counter animation
+    const updateCounter = function() {
+      const currentTime = Date.now();
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Use easeOutExpo for smoother animation
+      const easeOutProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const currentValue = (easeOutProgress * target).toFixed(decimals);
+      
+      $(counter).text(currentValue);
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      } else {
+        $(counter).text(target); // Ensure final value is exact
+      }
+    };
+    
+    requestAnimationFrame(updateCounter);
+  }
+  
+  // Counter already animated flag
+  let countersAnimated = false;
+  
+  // Function to check if counters are visible and start animation
+  function checkCounterVisibility() {
+    if (!countersAnimated && isInViewport($('.statistics-section')[0])) {
+      $('.counter').each(function() {
+        animateCounter(this);
+      });
+      countersAnimated = true;
+    }
+  }
+  
+  // Check counter visibility on page load
+  checkCounterVisibility();
 
   // Add animated class to nav links with delay
   setTimeout(function() {
