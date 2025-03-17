@@ -95,60 +95,105 @@ class MediaController extends Controller
     /**
      * Display the specified media.
      *
-     * @param  \App\Models\Media  $media
+     * @param  int  $id
      * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
-    public function show(Media $media)
+    public function show($id)
     {
         if ($redirect = $this->checkAdmin()) {
             return $redirect;
         }
 
-        return view('backend.media.show', compact('media'));
+        try {
+            // Find the media
+            $media = Media::find($id);
+            
+            if (!$media) {
+                return redirect()->route('admin.media.index')
+                    ->with('error', 'Media not found. It may have been deleted.');
+            }
+
+            return view('backend.media.show', compact('media'));
+        } catch (\Exception $e) {
+            Log::error('Error showing media: ' . $e->getMessage());
+            
+            return redirect()->route('admin.media.index')
+                ->with('error', 'Error showing media: ' . $e->getMessage());
+        }
     }
 
     /**
      * Show the form for editing the specified media.
      *
-     * @param  \App\Models\Media  $media
+     * @param  int  $id
      * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
-    public function edit(Media $media)
+    public function edit($id)
     {
         if ($redirect = $this->checkAdmin()) {
             return $redirect;
         }
 
-        return view('backend.media.edit', compact('media'));
+        try {
+            // Find the media
+            $media = Media::find($id);
+            
+            if (!$media) {
+                return redirect()->route('admin.media.index')
+                    ->with('error', 'Media not found. It may have been deleted.');
+            }
+
+            return view('backend.media.edit', compact('media'));
+        } catch (\Exception $e) {
+            Log::error('Error editing media: ' . $e->getMessage());
+            
+            return redirect()->route('admin.media.index')
+                ->with('error', 'Error editing media: ' . $e->getMessage());
+        }
     }
 
     /**
      * Update the specified media in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Media  $media
+     * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Media $media)
+    public function update(Request $request, $id)
     {
         if ($redirect = $this->checkAdmin()) {
             return $redirect;
         }
 
-        $request->validate([
-            'name' => 'nullable|string|max:255',
-            'alt_text' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-        ]);
-        
-        $media->update([
-            'name' => $request->name ?? $media->name ?? $media->filename,
-            'alt_text' => $request->alt_text,
-            'description' => $request->description,
-        ]);
-        
-        return redirect()->route('admin.media.index')
-            ->with('success', 'Media updated successfully.');
+        try {
+            // Find the media
+            $media = Media::find($id);
+            
+            if (!$media) {
+                return redirect()->route('admin.media.index')
+                    ->with('error', 'Media not found. It may have been deleted.');
+            }
+
+            $request->validate([
+                'name' => 'nullable|string|max:255',
+                'alt_text' => 'nullable|string|max:255',
+                'description' => 'nullable|string',
+            ]);
+            
+            $media->update([
+                'name' => $request->name ?? $media->name ?? $media->filename,
+                'alt_text' => $request->alt_text,
+                'description' => $request->description,
+            ]);
+            
+            return redirect()->route('admin.media.index')
+                ->with('success', 'Media updated successfully.');
+        } catch (\Exception $e) {
+            Log::error('Error updating media: ' . $e->getMessage());
+            
+            return redirect()->route('admin.media.index')
+                ->with('error', 'Error updating media: ' . $e->getMessage());
+        }
     }
 
     /**

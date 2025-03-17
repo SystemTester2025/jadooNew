@@ -15,11 +15,13 @@ class Media extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'name',
         'filename',
         'path',
         'mime_type',
         'size',
         'alt_text',
+        'description',
     ];
 
     /**

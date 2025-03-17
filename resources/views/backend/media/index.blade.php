@@ -57,7 +57,7 @@
                                 <a href="{{ route('admin.media.edit', $item) }}" class="btn btn-sm btn-primary">
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
-                                <form action="{{ route('admin.media.destroy', $item) }}" method="POST" class="delete-form">
+                                <form action="{{ route('admin.media.destroy', $item->id) }}" method="POST" class="delete-form">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger delete-btn">

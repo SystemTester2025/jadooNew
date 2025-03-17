@@ -57,7 +57,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('admin.media.update', $media) }}" method="POST">
+                <form action="{{ route('admin.media.update', $media->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     
@@ -92,7 +92,7 @@
                 <div class="mt-4 pt-3 border-top">
                     <h6>Danger Zone</h6>
                     <p class="text-muted">Once you delete this media, there is no going back. Please be certain.</p>
-                    <form action="{{ route('admin.media.destroy', $media) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this media? This action cannot be undone.');">
+                    <form action="{{ route('admin.media.destroy', $media->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this media? This action cannot be undone.');">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">
