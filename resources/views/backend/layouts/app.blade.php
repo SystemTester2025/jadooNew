@@ -3,232 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Admin Dashboard') - JADOO Admin</title>
+    <title>@yield('title') - {{ config('app.name', 'Jadoo') }} Admin</title>
     
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Summernote CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <!-- Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
+        :root {
+            --primary-color: #5D50C6;
+            --secondary-color: #F85E9F;
+            --accent-color: #FF5722;
+            --light-color: #F8F9FA;
+            --dark-color: #212529;
+            --success-color: #20C997;
+            --info-color: #0DCAF0;
+            --warning-color: #FFC107;
+            --danger-color: #DC3545;
         }
         
-        .sidebar {
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
             min-height: 100vh;
-            background-color: #343a40;
-            color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Sidebar */
+        .sidebar {
             position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
             width: 250px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            z-index: 100;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
         }
         
         .sidebar-header {
-            padding: 20px 15px;
+            padding: 20px;
+            text-align: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .sidebar-brand {
-            color: #fff;
-            font-size: 1.5rem;
+            font-size: 24px;
             font-weight: 700;
+            color: white;
             text-decoration: none;
         }
         
         .sidebar-menu {
-            padding: 15px 0;
+            padding: 20px 0;
+            list-style: none;
+            margin: 0;
         }
         
-        .sidebar-menu-item {
-            padding: 10px 15px;
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-menu a {
             display: block;
+            padding: 12px 20px;
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: all 0.3s;
+            border-left: 3px solid transparent;
         }
         
-        .sidebar-menu-item:hover, .sidebar-menu-item.active {
+        .sidebar-menu a:hover, 
+        .sidebar-menu a.active {
             background-color: rgba(255, 255, 255, 0.1);
-            color: #fff;
+            color: white;
+            border-left-color: white;
         }
         
-        .sidebar-menu-item i {
+        .sidebar-menu i {
             margin-right: 10px;
             width: 20px;
             text-align: center;
         }
         
+        /* Main Content */
         .main-content {
             margin-left: 250px;
+            flex: 1;
             padding: 20px;
+            transition: all 0.3s;
         }
         
-        .page-header {
+        /* Header */
+        .content-header {
             margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
         }
         
-        .navbar {
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        .content-header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+            color: var(--dark-color);
         }
         
-        .navbar-brand {
-            font-weight: 700;
-        }
-        
-        .dropdown-menu {
-            min-width: 200px;
-        }
-        
-        .dropdown-item i {
-            margin-right: 10px;
-            width: 20px;
-            text-align: center;
-        }
-        
+        /* Cards */
         .card {
-            margin-bottom: 20px;
             border: none;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
         }
         
         .card-header {
-            background-color: #fff;
+            background-color: white;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            font-weight: 600;
+            padding: 15px 20px;
+            border-top-left-radius: 10px !important;
+            border-top-right-radius: 10px !important;
         }
         
+        .card-body {
+            padding: 20px;
+        }
+        
+        /* Buttons */
         .btn-primary {
-            background-color: #6b5ce7;
-            border-color: #6b5ce7;
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
         }
         
         .btn-primary:hover {
-            background-color: #5a4bd1;
-            border-color: #5a4bd1;
+            background-color: #4a40a0;
+            border-color: #4a40a0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                margin-left: -250px;
+            }
+            
+            .sidebar.active {
+                margin-left: 0;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .main-content.active {
+                margin-left: 250px;
+            }
+            
+            .sidebar-toggle {
+                display: block;
+            }
+        }
+        
+        /* Toggle Button */
+        .sidebar-toggle {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 101;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Footer */
+        .footer {
+            margin-left: 250px;
+            padding: 15px 20px;
+            text-align: center;
+            background-color: white;
+            border-top: 1px solid #e9ecef;
+            color: #6c757d;
+            transition: all 0.3s;
+        }
+        
+        @media (max-width: 768px) {
+            .footer {
+                margin-left: 0;
+            }
+            
+            .footer.active {
+                margin-left: 250px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="d-flex">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <a href="{{ route('admin.dashboard') }}" class="sidebar-brand">JADOO Admin</a>
-            </div>
-            <div class="sidebar-menu">
-                <a href="{{ route('admin.dashboard') }}" class="sidebar-menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+    <!-- Sidebar Toggle Button (Mobile) -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="{{ route('admin.dashboard') }}" class="sidebar-brand">{{ config('app.name', 'Jadoo') }}</a>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li>
+                <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                     <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a>
-                <a href="{{ route('admin.pages.index') }}" class="sidebar-menu-item {{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
+            </li>
+            <li>
+                <a href="{{ route('admin.pages.index') }}" class="{{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
                     <i class="fas fa-file-alt"></i> Pages
                 </a>
-                <a href="{{ route('admin.services.index') }}" class="sidebar-menu-item {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
-                    <i class="fas fa-cogs"></i> Services
+            </li>
+            <li>
+                <a href="{{ route('admin.services.index') }}" class="{{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
+                    <i class="fas fa-concierge-bell"></i> Services
                 </a>
-                <a href="{{ route('admin.media.index') }}" class="sidebar-menu-item {{ request()->routeIs('admin.media.*') ? 'active' : '' }}">
+            </li>
+            <li>
+                <a href="{{ route('admin.media.index') }}" class="{{ request()->routeIs('admin.media.*') ? 'active' : '' }}">
                     <i class="fas fa-images"></i> Media
                 </a>
-                <a href="{{ route('admin.settings.index') }}" class="sidebar-menu-item {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
-                    <i class="fas fa-sliders-h"></i> Settings
+            </li>
+            <li>
+                <a href="{{ route('admin.settings.index') }}" class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
+                    <i class="fas fa-cog"></i> Settings
                 </a>
-                <hr class="my-2 bg-secondary">
-                <a href="{{ route('home') }}" class="sidebar-menu-item" target="_blank">
+            </li>
+            <li>
+                <a href="{{ route('home') }}" target="_blank">
                     <i class="fas fa-external-link-alt"></i> View Site
                 </a>
-                <a href="#" class="sidebar-menu-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            </li>
+            <li>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-            </div>
-        </div>
-
-        <!-- Main Content -->
-        <div class="main-content flex-grow-1">
-            <!-- Top Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-light mb-4">
-                <div class="container-fluid">
-                    <h4 class="mb-0">@yield('header', 'Dashboard')</h4>
-                    <div class="ms-auto">
-                        <div class="dropdown">
-                            <a class="btn btn-light dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user-circle me-1"></i> {{ Auth::user()->name }}
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('home') }}" target="_blank">
-                                        <i class="fas fa-external-link-alt"></i> View Site
-                                    </a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form-2').submit();">
-                                        <i class="fas fa-sign-out-alt"></i> Logout
-                                    </a>
-                                    <form id="logout-form-2" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- Page Content -->
-            <div class="container-fluid">
-                @if(session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-                
-                @if(session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ session('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-                
-                @yield('content')
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <div class="content-header">
+            <h1>@yield('header', 'Dashboard')</h1>
+        </div>
+        
+        @yield('content')
+    </div>
     
-    <!-- Summernote JS -->
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <!-- Footer -->
+    <div class="footer" id="footer">
+        <p class="mb-0">&copy; {{ date('Y') }} {{ config('app.name', 'Jadoo') }}. All rights reserved.</p>
+    </div>
     
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        $(document).ready(function() {
-            // Initialize Summernote WYSIWYG editor
-            $('.summernote').summernote({
-                height: 300,
-                toolbar: [
-                    ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture']],
-                    ['view', ['fullscreen', 'codeview', 'help']]
-                ]
+        // Sidebar Toggle (Mobile)
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            const footer = document.getElementById('footer');
+            
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+                mainContent.classList.toggle('active');
+                footer.classList.toggle('active');
             });
+            
+            // Check screen size on load
+            checkScreenSize();
+            
+            // Check screen size on resize
+            window.addEventListener('resize', checkScreenSize);
+            
+            function checkScreenSize() {
+                if (window.innerWidth <= 768) {
+                    sidebarToggle.style.display = 'flex';
+                } else {
+                    sidebarToggle.style.display = 'none';
+                    sidebar.classList.remove('active');
+                    mainContent.classList.remove('active');
+                    footer.classList.remove('active');
+                }
+            }
         });
     </script>
     
