@@ -30,7 +30,7 @@
             
             <div class="mb-3">
                 <label for="name" class="form-label">Name (Optional)</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+                <input type="text" class="form-control" id="name" name="filename" value="{{ old('filename') }}">
                 <small class="text-muted">If left blank, the original filename will be used.</small>
             </div>
             

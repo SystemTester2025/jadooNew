@@ -69,7 +69,7 @@ class MediaController extends Controller
 
         $request->validate([
             'file' => 'required|file|max:10240', // 10MB max
-            'name' => 'nullable|string|max:255',
+            'filename' => 'nullable|string|max:255',
             'alt_text' => 'nullable|string|max:255',
             'description' => 'nullable|string',
         ]);
@@ -79,8 +79,7 @@ class MediaController extends Controller
         $path = $file->storeAs('media', $filename, 'public');
         
         Media::create([
-            'name' => $request->input('name', $file->getClientOriginalName()),
-            'filename' => $filename,
+            'filename' => $request->input('filename', $file->getClientOriginalName()),
             'path' => 'storage/' . $path,
             'mime_type' => $file->getMimeType(),
             'size' => $file->getSize(),
@@ -175,13 +174,13 @@ class MediaController extends Controller
             }
 
             $request->validate([
-                'name' => 'nullable|string|max:255',
+                'filename' => 'nullable|string|max:255',
                 'alt_text' => 'nullable|string|max:255',
                 'description' => 'nullable|string',
             ]);
             
             $media->update([
-                'name' => $request->name ?? $media->name ?? $media->filename,
+                'filename' => $request->filename ?? $media->filename,
                 'alt_text' => $request->alt_text,
                 'description' => $request->description,
             ]);

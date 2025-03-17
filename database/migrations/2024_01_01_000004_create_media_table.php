@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->string('filename');
+            $table->string('filename')->nullable();
             $table->string('path');
-            $table->string('mime_type');
-            $table->integer('size');
+            $table->string('mime_type')->nullable();
+            $table->integer('size')->nullable();
             $table->string('alt_text')->nullable();
+            $table->text('description')->nullable();
+
             $table->timestamps();
         });
     }
