@@ -55,9 +55,17 @@
             </div>
             
             <div class="mb-3">
-                <label for="image" class="form-label">Image Path</label>
-                <input type="text" class="form-control" id="image" name="image" value="{{ old('image', $service->image) }}">
-                <small class="text-muted">The path to the service image. Example: images/services/service-name.jpg</small>
+                <label for="image" class="form-label">Featured Image</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="image" name="image" value="{{ old('image', $service->image) }}" readonly>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mediaModal">
+                        <i class="fas fa-images"></i> Select Image
+                    </button>
+                </div>
+                <small class="text-muted">Select an image from the media library for this service.</small>
+                <div id="imagePreview" class="mt-2 {{ old('image', $service->image) ? '' : 'd-none' }}">
+                    <img src="{{ old('image', $service->image) ? asset(old('image', $service->image)) : '' }}" class="img-thumbnail" style="max-height: 150px;">
+                </div>
             </div>
             
             <div class="row">
@@ -87,4 +95,73 @@
         </form>
     </div>
 </div>
+@endsection
+
+<!-- Media Modal -->
+<div class="modal fade" id="mediaModal" tabindex="-1" aria-labelledby="mediaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediaModalLabel">Select Image from Media Library</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    @if($media->isEmpty())
+                        <div class="col-12">
+                            <div class="alert alert-info">
+                                No media files found. <a href="{{ route('admin.media.create') }}" target="_blank">Upload some media</a> to get started.
+                            </div>
+                        </div>
+                    @else
+                        @foreach($media as $item)
+                            @if(str_contains($item->mime_type ?? $item->file_type ?? '', 'image'))
+                                <div class="col-md-3 col-sm-4 mb-3">
+                                    <div class="card h-100 media-item" data-path="{{ $item->path }}" style="cursor: pointer;">
+                                        <div class="media-preview text-center p-2">
+                                            <img src="{{ asset($item->path) }}" alt="{{ $item->alt_text }}" class="img-fluid" style="max-height: 120px;">
+                                        </div>
+                                        <div class="card-body p-2">
+                                            <p class="card-text small text-truncate">{{ $item->name ?? $item->filename }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle media item selection
+        const mediaItems = document.querySelectorAll('.media-item');
+        const imageInput = document.getElementById('image');
+        const imagePreview = document.getElementById('imagePreview');
+        const mediaModal = document.getElementById('mediaModal');
+        const modal = bootstrap.Modal.getOrCreateInstance(mediaModal);
+        
+        mediaItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const path = this.getAttribute('data-path');
+                imageInput.value = path;
+                
+                // Update preview
+                const previewImg = imagePreview.querySelector('img');
+                previewImg.src = '{{ asset("") }}' + path;
+                imagePreview.classList.remove('d-none');
+                
+                // Close modal
+                modal.hide();
+            });
+        });
+    });
+</script>
 @endsection 
