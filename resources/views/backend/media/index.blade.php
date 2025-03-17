@@ -35,6 +35,7 @@
                         <div class="card h-100">
                             <div class="media-preview text-center p-2">
                                 @if(str_contains($item->mime_type ?? $item->file_type ?? '', 'image'))
+                                {{-- <h3>{{ asset($item->path ?? $item->file_path) }}</h3> --}}
                                     <img src="{{ asset($item->path ?? $item->file_path) }}" alt="{{ $item->alt_text }}" class="img-fluid" style="max-height: 150px;">
                                 @else
                                     <div class="file-icon p-4">

@@ -67,28 +67,65 @@ class MediaController extends Controller
             return $redirect;
         }
 
-        $request->validate([
-            'file' => 'required|file|max:10240', // 10MB max
-            'filename' => 'nullable|string|max:255',
-            'alt_text' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-        ]);
+        try {
+            $request->validate([
+                'file' => 'required|file|max:10240', // 10MB max
+                'filename' => 'nullable|string|max:255',
+                'alt_text' => 'nullable|string|max:255',
+                'description' => 'nullable|string',
+            ]);
 
-        $file = $request->file('file');
-        $filename = time() . '_' . $file->getClientOriginalName();
-        $path = $file->storeAs('media', $filename, 'public');
-        
-        Media::create([
-            'filename' => $request->input('filename', $file->getClientOriginalName()),
-            'path' => 'storage/' . $path,
-            'mime_type' => $file->getMimeType(),
-            'size' => $file->getSize(),
-            'alt_text' => $request->alt_text,
-            'description' => $request->description,
-        ]);
-        
-        return redirect()->route('admin.media.index')
-            ->with('success', 'Media uploaded successfully.');
+            // Check if we have a file in the request
+            if (!$request->hasFile('file')) {
+                Log::error('No file found in request');
+                return redirect()->back()->with('error', 'No file found in the request. Please try again.');
+            }
+
+            $file = $request->file('file');
+            
+            // Debug information to help identify the issue
+            Log::info('Uploaded file details', [
+                'original_name' => $file->getClientOriginalName(),
+                'size' => $file->getSize(),
+                'mime' => $file->getMimeType(),
+                'path' => $file->getRealPath(),
+                'error' => $file->getError()
+            ]);
+            
+            $filename = time() . '_' . $file->getClientOriginalName();
+            
+            // Make sure target directory exists
+            $targetDir = public_path('images/uploads');
+            if (!is_dir($targetDir)) {
+                mkdir($targetDir, 0755, true);
+            }
+            
+            // Instead of using move(), try using copy() which tends to work better on Windows
+            if (!copy($file->getRealPath(), $targetDir . '/' . $filename)) {
+                throw new \Exception("Failed to copy uploaded file");
+            }
+
+            $path = 'images/uploads/' . $filename;
+            
+            Media::create([
+                'filename' => $request->input('filename', $file->getClientOriginalName()),
+                'path' => $path,
+                'mime_type' => $file->getMimeType(),
+                'size' => $file->getSize(),
+                'alt_text' => $request->alt_text,
+                'description' => $request->description,
+            ]);
+            
+            return redirect()->route('admin.media.index')
+                ->with('success', 'Media uploaded successfully.');
+        } catch (\Exception $e) {
+            Log::error('File upload failed: ' . $e->getMessage(), [
+                'file' => $request->hasFile('file') ? $request->file('file')->getClientOriginalName() : 'No file',
+                'error' => $e->getTraceAsString()
+            ]);
+            
+            return redirect()->back()->with('error', 'File upload failed: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -219,22 +256,16 @@ class MediaController extends Controller
             // Get the file path
             $path = $media->path ?? $media->file_path;
             
-            // Remove the file from storage if path exists
+            // Remove the file from public directory if path exists
             if ($path) {
-                // Convert the public URL path to a storage path
-                $storagePath = str_replace('storage/', 'public/', $path);
+                $fullPath = public_path($path);
                 
                 // Check if file exists before attempting to delete
-                if (Storage::exists($storagePath)) {
-                    Storage::delete($storagePath);
+                if (file_exists($fullPath)) {
+                    unlink($fullPath);
                 } else {
-                    // Try alternative path formats
-                    $alternativePath = 'public/' . basename($path);
-                    if (Storage::exists($alternativePath)) {
-                        Storage::delete($alternativePath);
-                    }
-                    // If file doesn't exist in either location, log it but continue
-                    // This allows deleting database records even if files are missing
+                    // Log that file doesn't exist but continue
+                    Log::warning("File not found for deletion: {$fullPath}");
                 }
             }
             
